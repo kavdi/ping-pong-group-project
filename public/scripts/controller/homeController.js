@@ -16,3 +16,4 @@ var app = app || {};
 })(app);
 
 //app.Article.fetchAll(app.articleView.initIndexPage);
+
