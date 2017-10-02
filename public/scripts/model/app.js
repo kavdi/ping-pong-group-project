@@ -11,6 +11,7 @@ var app = app || {};
 
   LeaderBoard.prototype.toHtml = function(){
     /*MORE TO FOLLOW*/
+    let template = Handlebars.compile($('#leader-board-template').text());
   };
 
 })(app);
