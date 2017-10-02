@@ -10,10 +10,11 @@ var app = app || {};
     //MORE TO FOLLOW
     app.LeaderBoard.all.forEach(leaderBoard =>{
       console.log("test");
+      $('#leader-board-table table').append(leaderBoard.toHtml());
     });
   };
 
-
+app.LeaderBoard.fetchAll(homeView.populateRankings);
 })(app);
 
 //initIndexPage

@@ -6,9 +6,12 @@ var app = app || {};
 (function(module){
   const homeController = {};
 
+  $('#inactive-players').hide();
+
   homeController.index = () => {
-  //  $('#test-rows').hide();
+  //
   //init page here
+    app.homeView.populateRankings;
   };
 
   module.homeController = homeController;
@@ -16,4 +19,3 @@ var app = app || {};
 })(app);
 
 //app.Article.fetchAll(app.articleView.initIndexPage);
-
