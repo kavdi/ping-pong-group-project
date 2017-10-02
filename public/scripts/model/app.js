@@ -19,7 +19,7 @@ var app = app || {};
   LeaderBoard.loadAll = function(rows){
     //sort player objects
     rows.sort(function(player1,player2){
-      return player2.playerRank - player1.playerRank;
+      return player1.playerRank - player2.playerRank;
     })
     //populate Leaderboard.all with player objects
     LeaderBoard.all = rows.map(function(players){
@@ -39,24 +39,3 @@ var app = app || {};
 
   module.LeaderBoard = LeaderBoard;
 })(app);
-
-
-/*
-
-Article.loadAll = rows => {
-  rows.sort((a,b) => (new Date(b.publishedOn)) - (new Date(a.publishedOn)));
-  Article.all = rows.map(ele => new Article(ele));
-};
-
-
-Article.fetchAll = callback => {
-    $.get('/articles')
-    .then(
-      results => {
-        Article.loadAll(results);
-        callback();
-      }
-    )
-  };
-
-*/
