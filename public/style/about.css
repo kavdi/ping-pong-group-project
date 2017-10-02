@@ -1,0 +1,25 @@
+section {
+  margin: auto;
+  width: 80%;
+}
+
+.aboutMe {
+  border: 1px solid lightgray;
+  padding: 0.5em;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px #888888;
+}
+
+.aboutBio {
+  display: inline;
+}
+
+.aboutBio, img {
+  float: left;
+  padding-right: 1em;
+}
+
+.social {
+  display: inline-block;
+  float: right;
+}
