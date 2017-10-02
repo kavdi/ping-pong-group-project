@@ -10,17 +10,18 @@ var app = app || {};
   LeaderBoard.all = [];
 
   LeaderBoard.prototype.toHtml = function(){
-    /*MORE TO FOLLOW*/
     let template = Handlebars.compile($('#leader-board-template').text());
     var html    = template(this);
-    //$('#leader-board-table table').append(html);
+
     return html;
   };
 
   LeaderBoard.loadAll = function(rows){
+    //sort player objects
     rows.sort(function(player1,player2){
       return player2.playerRank - player1.playerRank;
     })
+    //populate Leaderboard.all with player objects
     LeaderBoard.all = rows.map(function(players){
       return new LeaderBoard (players);
     });
