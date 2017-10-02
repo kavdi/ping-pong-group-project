@@ -20,7 +20,7 @@ APP.use(EX.static('./public'));
 loadDB();
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
-
+APP.listen(PORT, () => console.log(`port ${PORT}`));
 
 
 function loadLeaderboard() {
