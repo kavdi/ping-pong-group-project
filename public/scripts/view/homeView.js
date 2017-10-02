@@ -8,6 +8,9 @@ var app = app || {};
   //WILL POPULATE LEADERBOARD RANKINGS
   homeView.populateRankings = function(){
     //MORE TO FOLLOW
+    app.LeaderBoard.all.forEach(leaderBoard =>{
+      console.log("test");
+    });
   };
 
 

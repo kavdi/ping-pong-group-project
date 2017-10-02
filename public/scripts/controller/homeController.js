@@ -7,7 +7,8 @@ var app = app || {};
   const homeController = {};
 
   homeController.index = () => {
-    $('#test-rows').hide();
+  //  $('#test-rows').hide();
+  //init page here
   };
 
   module.homeController = homeController;
