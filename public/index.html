@@ -1,5 +1,6 @@
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
   <!--NAVBAR SECTION - NEED VIEW URLS -->
@@ -7,25 +8,33 @@
     <li>About</li>
     <li>Players</li>
   </ul>
-
+  <!-- WILL BE HANDLEBAR TEMPLATES--->
   <div id ="leader-board-table">
     <table>
       <tr>
         <!--PLACE HOLDER - WILL BE POPULATED BY TEMPLATE-->
         <th>Rank</th>
         <th>First Name</th>
-        <th>Last Name</th>
         <th>Class</th>
       </tr>
       <!-- TEMPLATE FORMAT - MORE TO FOLLOW-->
       <tr>
         <td>{{PlayerRank}}</td>
         <td>{{PlayerFirstName}}</td>
-        <td>{{PlayerLastName}}</td>
+        <td>{{PlayerClass}}</td>
+      </tr>
+      <!-- GOING TO HIDE VIA JQUERY - THIS WILL BE INACTIVE PLAYERS-->
+      <tr id="test-rows">
+        <td>{{PlayerRank}}</td>
+        <td>{{PlayerFirstName}}</td>
         <td>{{PlayerClass}}</td>
       </tr>
     </table>
   </div>
+  <!--SCRIPTS-->
+  <script src="scripts/model/app.js"></script>
+  <script src="scripts/view/homeView.js"></script>
+  <script src="scripts/controller/homeController.js"></script>
 
 </body>
 </html>
