@@ -1,0 +1,27 @@
+{
+  "name": "ping-pong-group-project",
+  "version": "1.0.0",
+  "description": "301cf group project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kavdi/ping-pong-group-project.git"
+  },
+  "author": "kavdi gabriel shayne david",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kavdi/ping-pong-group-project/issues"
+  },
+  "homepage": "https://github.com/kavdi/ping-pong-group-project#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-request-proxy": "^2.0.0",
+    "pg": "^7.3.0",
+    "sf": "^0.1.9"
+  }
+}
