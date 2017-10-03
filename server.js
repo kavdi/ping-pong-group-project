@@ -23,7 +23,7 @@ createTable();
 APP.get('/leaders', (request, response) =>{
   CLIENT.query(`SELECT * FROM player ORDER BY playerrank ASC`)
   .then(result =>response.send(result.rows))
-  .catch(console.error);
+  // .catch(console.error);
 });
 
 APP.get('/slack/auth', (request, response) => {
@@ -65,10 +65,10 @@ function createTable() {
     CREATE TABLE IF NOT EXISTS
     player (
       id SERIAL PRIMARY KEY,
-      name VARCHAR(200) NOT NULL,
-      class VARCHAR(200) NOT NULL,
-      player_id VARCHAR(200) NOT NULL UNIQUE,
-      playerRank VARCHAR(200)
+      name VARCHAR(250) NOT NULL,
+      class VARCHAR(250) NOT NULL,
+      player_id VARCHAR(250) NOT NULL UNIQUE,
+      playerRank VARCHAR(250)
     );`
   )
   // .then(loadLeaderboard)
