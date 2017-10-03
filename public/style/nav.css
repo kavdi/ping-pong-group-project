@@ -14,7 +14,7 @@ nav {
   -ms-transform: rotate(-15deg);
   -webkit-transform: rotate(-15deg);
   transform: rotate(-15deg);
-  color: #f530d6;
+  color: #fda605;
   position: absolute;
   font-family: 'Sigmar One', cursive;
   font-size: 5em;
@@ -55,34 +55,33 @@ nav {
 }
 
 .circleOne {
-    top: -80px;
-    left: 15px;
-    height: 22em;
-    width: 22em;
-    border-radius: 100%;
-    background-color: #fd382d;
-    position: absolute;
-    z-index: 1;
-    box-shadow: 1px 1px #ff7069,
-                2px 2px #b51309,
-                4px 4px #f06f3a,
-                6px 6px #f06f3a,
-                8px 8px #e5cfb0,
-                10px 10px #e5cfb0,
-                12px 12px black;
+  top: -100px;
+  left: -50px;
+  height: 22em;
+  width: 22em;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 1px 1px #3ab9fd,
+              2px 2px #0070b3,
+              4px 4px #f06f3a,
+              6px 6px #f06f3a,
+              8px 8px #e5cfb0,
+              10px 10px #e5cfb0,
+              12px 12px black;
 }
 
 .circleTwo {
-  top: -30px;
-  left: -70px;
+  top: -86px;
+  left: -30px;
   height: 23em;
   width: 23em;
   border-radius: 100%;
-  background-color: #129ce8;
+  background-color: #fd382d;
   position: absolute;
   box-shadow:
-              1px 1px #3ab9fd,
-              2px 2px #105cb7,
+              1px 1px #ff7069,
+              2px 2px #c70800,
               4px 4px #f06f3a,
               6px 6px #f06f3a,
               8px 8px #e5cfb0,
@@ -100,15 +99,15 @@ nav {
   }
 
   .circleTwo {
-    top: 5px;
-    left: -29px;
+    top: -85px;
+    left: -23px;
     height: 17em;
     width: 17em;
   }
 
   .circleOne {
     top: -120px;
-    left: -45px;
+    left: -70px;
     height: 18em;
     width: 18em;
   }
