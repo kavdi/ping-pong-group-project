@@ -21,7 +21,7 @@ loadDB();
 
 APP.get('/leaders', (request, response) =>{
   CLIENT.query(`SELECT * FROM player ORDER BY playerrank ASC`)
-  .then(result =>{ console.log(result.rows); response.send(result.rows)})
+  .then(result =>response.send(result.rows))
   .catch(console.error);
 });
 

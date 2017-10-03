@@ -1,6 +1,6 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <!---HANDLEBARS TEMPLATE-->
@@ -14,11 +14,11 @@
 <body>
   <!--NAVBAR SECTION - NEED VIEW URLS -->
   <ul>
-    <li>About</li>
-    <li data-content="leaders">Players</li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about-page">About</a></li>
   </ul>
   <!-- WILL BE HANDLEBAR TEMPLATES--->
-  <div id ="leader-board-table">
+  <section id="leader-board-table" data-content="leaders">
     <table>
       <tr>
         <!--PLACE HOLDER - WILL BE POPULATED BY TEMPLATE-->
@@ -28,14 +28,20 @@
       </tr>
       <!-- Template Goes Here-->
     </table>
-  </div>
-  <!--SCRIPTS-->
+  </section>
+  <section id="about-page" data-content="about-content">
+    The About Section goes Here.
+  </section>
+  <!-- SCRIPTS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/vendor/scripts/handlebars.js"></script>
+  <script src="/vendor/scripts/page.js"></script>
 
-  <script src="vendor/scripts/handlebars.js"></script>
-
-  <script src="scripts/model/app.js"></script>
-  <script src="scripts/view/homeView.js"></script>
-  <script src="scripts/controller/homeController.js"></script>
+  <script src="/scripts/model/app.js"></script>
+  <script src="/scripts/view/homeView.js"></script>
+  <script src="/scripts/controller/homeController.js"></script>
+  <script src="/scripts/controller/aboutController.js"></script>
+  <script src="/scripts/controller/routes.js"></script>
 
 </body>
 </html>

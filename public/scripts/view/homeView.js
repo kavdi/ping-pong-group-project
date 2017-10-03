@@ -9,10 +9,19 @@ var app = app || {};
   homeView.populateRankings = function(){
     //MORE TO FOLLOW
     app.LeaderBoard.all.forEach(leaderBoard =>{
-      console.log("test");
       $('#leader-board-table table').append(leaderBoard.toHtml());
     });
   };
 
 app.LeaderBoard.fetchAll(homeView.populateRankings);
 })(app);
+
+
+/*
+GET RANGE OF PLAYERS
+SELECT name FROM player WHERE playerrank BETWEEN '1' and '3';
+
+var att  = result[0].curattend;
+ client.query("INSERT INTO archive (attendance) VALUES (?);", [att], function(err,info){ });
+
+*/

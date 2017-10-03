@@ -2,7 +2,6 @@
 var app = app || {};
 
 (function(module) {
-
   function LeaderBoard(slackDataObj){
     Object.keys(slackDataObj).forEach(key => this[key] = slackDataObj[key]);
   }
