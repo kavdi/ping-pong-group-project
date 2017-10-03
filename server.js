@@ -34,8 +34,8 @@ APP.get('/slack/auth', (request, response) => {
     body = JSON.parse(body);
     if(body.ok === true){
       CLIENT.query(
-      'INSERT INTO player(name, player_id, class) VALUES($1, $2, $3) ON CONFLICT (id) DO NOTHING;',
-      [body.user.name, body.user.id, body.team.id]
+      'INSERT INTO player(name, class, player_id) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
+      [body.user.name, body.team.id, body.user.id]
     )
     }else{
       console.log('NO ENTRY');
