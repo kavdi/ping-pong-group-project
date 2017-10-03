@@ -41,8 +41,6 @@ function loadLeaderboard() {
   })
 }
 
-
-
 function loadDB() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
@@ -57,17 +55,3 @@ function loadDB() {
   .then(loadLeaderboard)
   .catch(console.error);
 }
-
-
-/*
-app.get('/articles', (request, response) => {
-  client.query(`
-    SELECT * FROM articles
-    INNER JOIN authors
-      ON articles.author_id=authors.author_id;`
-  )
-  .then(result => response.send(result.rows))
-  .catch(console.error);
-});
-
-*/
