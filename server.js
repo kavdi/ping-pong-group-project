@@ -18,7 +18,7 @@ APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({extended: true}));
 APP.use(EX.static('./public'));
 
-loadDB();
+createTable();
 
 APP.get('/leaders', (request, response) =>{
   CLIENT.query(`SELECT * FROM player ORDER BY playerrank ASC`)
@@ -32,35 +32,42 @@ APP.get('/slack/auth', (request, response) => {
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, response, body){
     console.log(body);
     body = JSON.parse(body);
-    console.log(body.ok)
-
+    if(body.ok === true){
+      CLIENT.query(
+      'INSERT INTO player(name, player_id, class) VALUES($1, $2, $3) ON CONFLICT (id) DO NOTHING;',
+      [body.user.name, body.user.id, body.team.id]
+    )
+    }else{
+      console.log('NO ENTRY');
+    }
   })
 })
+
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
 
-function loadLeaderboard() {
-  FS.readFile('./public/data/data.json', (err, data) => {
-    JSON.parse(data.toString()).forEach(ele => {
-      CLIENT.query(
-        'INSERT INTO player(name, class, playerEmail, playerRank) VALUES($1, $2, $3, $4) ON CONFLICT (playerEmail) DO NOTHING;',
-        [ele.playerName, ele.class, ele.playerEmail, ele.playerRank]
-      )
-        .catch(console.error);
-    })
-  })
-}
+// function loadLeaderboard(players) {
+//   FS.readFile('./public/data/data.json', (err, data) => {
+//     JSON.parse(data.toString()).forEach(ele => {
+//       CLIENT.query(
+//         'INSERT INTO player(ok, name, id, team) VALUES($1, $2, $3, $4) ON CONFLICT (player.id) DO NOTHING;',
+//         [ele.ok, ele.name, ele.id, ele.team]
+//       )
+//         .catch(console.error);
+//     })
+//   })
+// }
 
-function loadDB() {
+function createTable() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
     player (
-      player_id SERIAL PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       name VARCHAR(200) NOT NULL,
       class VARCHAR(200) NOT NULL,
-      playerEmail VARCHAR(200) NOT NULL UNIQUE,
+      player_id VARCHAR(200) NOT NULL UNIQUE,
       playerRank VARCHAR(200)
     );`
   )
