@@ -30,12 +30,15 @@
         <li><a href="#">Players</a></li>
         <li><a href="#">About</a></li>
       </ul>
-      <div class="pongMe">Pong<br>Me!</div>
-      <div class="rellax heroOne circleOne" data-rellax-speed="6"></div>
-      <div class="rellax circleTwo" data-rellax-speed="8"></div>
+      <div class="rellax pongMe" data-rellax-speed="10">Pong<br>Me!</div>
+      <div class="rellax heroOne circleOne" data-rellax-speed="8"></div>
+      <div class="rellax circleTwo" data-rellax-speed="6"></div>
+      <div class="rellax circleThree" data-rellax-speed="2"></div>
+      <div class="rellax circleFour" data-rellax-speed="6"></div>
+      <div class="rellax circleFive" data-rellax-speed="12"></div>
+      <div class="rellax topBar" data-rellax-speed="-4"></div>
     </nav>
 
-    <div class="rellax circleThree"></div>
 
     <!-- A B O U T -->
     <section>
@@ -108,10 +111,7 @@
   <script type="text/javascript" src="rellax.js"></script>
   <script>
     var rellax = new Rellax('.rellax', {
-      // center: true
       callback: function(position) {
-          // callback every position change
-          console.log(position);
       }
     });
   </script>

@@ -4,6 +4,7 @@ section {
 }
 
 .aboutMe {
+  z-index: 10;
   border: 1px solid lightgray;
   padding: 0.5em;
   border-radius: 5px;
