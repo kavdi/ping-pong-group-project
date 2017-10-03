@@ -31,6 +31,19 @@ APP.get('/slack/auth', (request, response) => {
   let code = request.query.code;
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, response, body){
     console.log(body);
+    body = JSON.parse(body);
+    if(body.ok === true){
+      console.log("BODY IS OK!!!!");
+    }else{
+      console.log("BODY IS NOT OK!!!!");
+    }
+    let players = {};
+    players.ok = body.ok;
+
+    players.name = body.user.name;
+    player.id = body.user.id;
+    player.team = body.team.id;
+    loadLeaderboard(players);
   })
 })
 
@@ -38,12 +51,12 @@ APP.get('*', (request, response) => response.sendFile('index.html', {root: './pu
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
 
-function loadLeaderboard() {
+function loadLeaderboard(players) {
   FS.readFile('./public/data/data.json', (err, data) => {
     JSON.parse(data.toString()).forEach(ele => {
       CLIENT.query(
-        'INSERT INTO player(name, class, playerEmail, playerRank) VALUES($1, $2, $3, $4) ON CONFLICT (playerEmail) DO NOTHING;',
-        [ele.playerName, ele.class, ele.playerEmail, ele.playerRank]
+        'INSERT INTO player(ok, name, id, team) VALUES($1, $2, $3, $4) ON CONFLICT (player.id) DO NOTHING;',
+        [ele.ok, ele.name, ele.id, ele.team]
       )
         .catch(console.error);
     })
@@ -54,10 +67,11 @@ function loadDB() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
     player (
-      player_id SERIAL PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       name VARCHAR(200) NOT NULL,
       class VARCHAR(200) NOT NULL,
-      playerEmail VARCHAR(200) NOT NULL UNIQUE,
+      player_id VARCHAR(200) NOT NULL UNIQUE,
+      player_team VARCHAR(200) NOT NULL,
       playerRank VARCHAR(200)
     );`
   )
