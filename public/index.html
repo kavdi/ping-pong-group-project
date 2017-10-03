@@ -6,8 +6,8 @@
 <!---HANDLEBARS TEMPLATE-->
 <script id="leader-board-template" type="text/x-handlebars-template">
   <tr>
-    <td>{{playerRank}}</td>
-    <td>{{playerName}}</td>
+    <td>{{playerrank}}</td>
+    <td>{{name}}</td>
     <td>{{class}}</td>
   </tr>
 </script>
@@ -15,7 +15,7 @@
   <!--NAVBAR SECTION - NEED VIEW URLS -->
   <ul>
     <li>About</li>
-    <li>Players</li>
+    <li data-content="leaders">Players</li>
   </ul>
   <!-- WILL BE HANDLEBAR TEMPLATES--->
   <div id ="leader-board-table">
@@ -26,7 +26,7 @@
         <th>First Name</th>
         <th>Class</th>
       </tr>
-      <!-- Template Goes Here-->  
+      <!-- Template Goes Here-->
     </table>
   </div>
   <!--SCRIPTS-->

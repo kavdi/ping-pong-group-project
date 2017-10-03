@@ -19,6 +19,13 @@ APP.use(EX.static('./public'));
 
 loadDB();
 
+APP.get('/leaders', (request, response) =>{
+  console.log("TEST ROUTING");
+  CLIENT.query(`SELECT * FROM player ORDER BY playerrank ASC`)
+  .then(result =>{ console.log(result.rows); response.send(result.rows)})
+  .catch(console.error);
+});
+
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
@@ -51,3 +58,17 @@ function loadDB() {
   .then(loadLeaderboard)
   .catch(console.error);
 }
+
+
+/*
+app.get('/articles', (request, response) => {
+  client.query(`
+    SELECT * FROM articles
+    INNER JOIN authors
+      ON articles.author_id=authors.author_id;`
+  )
+  .then(result => response.send(result.rows))
+  .catch(console.error);
+});
+
+*/
