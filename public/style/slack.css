@@ -1,11 +1,17 @@
 #slackButton {
-  position: absolute;
-  right: 0;
-  top: 150px;
-  z-index: 4;
+  background-color: white;
   border: thin solid rgb(187, 187, 187);
   border-radius: 10px;
+  position: absolute;
+  right: 140px;
+  top: 7px;
+  transition: background-color 0.5s;
   width: 11em;
+  z-index: 4;
+}
+
+#slackButton:hover {
+  background-color: #f1f1f1;
 }
 
 #slackIcon {

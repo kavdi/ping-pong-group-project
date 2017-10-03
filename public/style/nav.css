@@ -119,6 +119,13 @@ nav {
   border-radius: 100%;
 }
 
+#stars {
+  color: #d78a24;
+  position: relative;
+  top: 4.6em;
+  right: -3.06em;
+}
+
 .circleFive {
 
 }
