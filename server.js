@@ -7,7 +7,7 @@ const PARSER = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const APP = EX();
 // const REQUEST_PROXY = require('express-request-proxy');
-const conString = 'postgres://localhost:5432/ping-pong';
+const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
 
 CLIENT.connect();
