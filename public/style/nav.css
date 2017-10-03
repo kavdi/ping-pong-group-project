@@ -1,24 +1,163 @@
 nav {
-  text-align: right;
-  top: 0;
+  overflow: auto;
   width: 100%;
-  background-color: lightblue;
-  border-bottom: 1px solid darkblue;
   margin: 0;
-  background-color: #129ce8;
+  height: 20em;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0d8ef+0,ddf1f9+47,feffff+100 */
+  background: #a0d8ef; /* Old browsers */
+  background: -moz-linear-gradient(top, #a0d8ef 0%, #ddf1f9 47%, #feffff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #a0d8ef 0%,#ddf1f9 47%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #a0d8ef 0%,#ddf1f9 47%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0d8ef', endColorstr='#feffff',GradientType=0 ); /* IE6-9 */
 }
 
-nav ul {
+.pongMe {
+  -ms-transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(-15deg);
+  color: #fda605;
+  position: absolute;
+  font-family: 'Sigmar One', cursive;
+  font-size: 5em;
+  float: left;
+  left: 5%;
+  top: 5%;
+  line-height: 1;
+  text-align: center;
+  z-index: 5;
+  text-shadow: 1px 1px white,
+                2px 2px 8px black;
+}
+
+.navItems {
+  right: 0;
+  position: absolute;
+  z-index: 5;
+  font-family: 'Muli', sans-serif;
+  text-align: right;
+}
+.navItems ul {
   margin-top: 0;
   padding-top: 1em;
 }
 
-nav li {
-  display: inline;
+.navItems li {
+  list-style-type: none;
+  padding: 0.5em 1em;
+
 }
 
-nav li a {
-  color: white;
+.navItems li a {
+  color: gray;
   text-decoration: none;
   padding: 1em;
+  transition: box-shadow 0.5s, color 0.5s;
+  border-radius: 10px;
+}
+
+.navItems li a:hover {
+  color: white;
+  box-shadow: inset 0 0 0 40px gray;
+  border-radius: 10px;
+}
+
+.circleOne {
+  top: -100px;
+  left: -50px;
+  height: 22em;
+  width: 22em;
+  border-radius: 100%;
+  position: absolute;
+  z-index: 2;
+  box-shadow: 1px 1px #3ab9fd,
+              2px 2px #0070b3,
+              4px 4px #f06f3a,
+              6px 6px #f06f3a,
+              8px 8px #e5cfb0,
+              10px 10px #e5cfb0,
+              12px 12px black;
+}
+
+.circleTwo {
+  top: -86px;
+  left: -30px;
+  height: 23em;
+  width: 23em;
+  border-radius: 100%;
+  background-color: #fd382d;
+  position: absolute;
+  z-index: 1;
+  box-shadow:
+              1px 1px #ff7069,
+              2px 2px #c70800,
+              4px 4px #f06f3a,
+              6px 6px #f06f3a,
+              8px 8px #e5cfb0,
+              10px 10px #e5cfb0,
+              12px 12px black;
+}
+
+.circleThree {
+  z-index: 1;
+  position: absolute;
+  top: 100px;
+  right: -70px;
+  background-color: white;
+  height: 15em;
+  width: 15em;
+  border-radius: 100%;
+}
+
+.circleFour {
+  z-index: 2;
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  background-color: #fda605;
+  height: 10em;
+  width: 10em;
+  border-radius: 100%;
+}
+
+.circleFive {
+  
+}
+
+.topBar {
+  position: absolute;
+  width: 100%;
+  background-color: #313b48;
+  height: 3em;
+}
+
+@media all and (max-width: 600px) {
+
+  .pongMe {
+    font-size: 3em;
+    float: left;
+    left: 20px;
+    top: 20px;
+  }
+
+  .circleTwo {
+    top: -85px;
+    left: -23px;
+    height: 17em;
+    width: 17em;
+  }
+
+  .circleOne {
+    top: -120px;
+    left: -70px;
+    height: 18em;
+    width: 18em;
+  }
+
+  .nav {
+    display: block;
+    right: 1em;
+    top: 1em;
+    position: absolute;
+    font-size: 1.2em;
+  }
 }
