@@ -124,7 +124,6 @@ nav {
 }
 
 .topBarOne {
-  z-index: 1;
   position: absolute;
   width: 100%;
   background-color: #313b48;
