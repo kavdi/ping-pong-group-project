@@ -1,6 +1,34 @@
 #slackButton {
+  background-color: white;
+  border: thin solid rgb(187, 187, 187);
+  border-radius: 10px;
   position: absolute;
-  right: 0;
-  top: 150px;
+  right: 140px;
+  top: 7px;
+  transition: background-color 0.5s;
+  width: 11em;
   z-index: 4;
+}
+
+#slackButton:hover {
+  background-color: #f1f1f1;
+}
+
+#slackIcon {
+  width: 25px;
+  vertical-align: middle;
+  padding: 0.3em;
+  margin-bottom: 0.1em;
+}
+
+#slackButton p {
+  margin: 0.5em 0 0 0;
+  display: inline-block;
+  font-family: 'Muli', sans-serif;
+  color: black;
+}
+
+#slackButton em {
+  font-style: normal;
+  font-weight: bolder;
 }
