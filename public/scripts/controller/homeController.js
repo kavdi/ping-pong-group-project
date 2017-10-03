@@ -4,7 +4,7 @@ var app = app || {};
 (function(module){
   const homeController = {};
   homeController.index = () => {
-    $('#leader-board-table').show();
+    $('#leader-board-table').fadeIn();
     $('#about-page').hide();
   };
 

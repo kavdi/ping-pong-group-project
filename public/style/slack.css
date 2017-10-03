@@ -1,0 +1,6 @@
+#slackButton {
+  position: absolute;
+  right: 0;
+  top: 150px;
+  z-index: 4;
+}

@@ -1,6 +1,7 @@
 section {
   margin: auto;
   width: 90%;
+  display: none;
 }
 
 .aboutMe {
