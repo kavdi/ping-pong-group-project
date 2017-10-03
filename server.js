@@ -71,6 +71,6 @@ function createTable() {
       playerRank VARCHAR(200)
     );`
   )
-  .then(loadLeaderboard)
+  // .then(loadLeaderboard)
   .catch(console.error);
 }
