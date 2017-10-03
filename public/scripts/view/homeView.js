@@ -9,7 +9,6 @@ var app = app || {};
   homeView.populateRankings = function(){
     //MORE TO FOLLOW
     app.LeaderBoard.all.forEach(leaderBoard =>{
-      console.log("test");
       $('#leader-board-table table').append(leaderBoard.toHtml());
     });
   };
