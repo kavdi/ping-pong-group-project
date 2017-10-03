@@ -28,7 +28,8 @@ var app = app || {};
   };
 
   LeaderBoard.fetchAll = function(callback){
-    $.get('/data/data.json')
+  //  $.get('/data/data.json')
+  $.get('/leaders')
     .then(
       function(results){
         LeaderBoard.loadAll(results);
