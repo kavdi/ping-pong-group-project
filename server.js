@@ -25,8 +25,8 @@ APP.get('/leaders', (request, response) =>{
   .catch(console.error);
 });
 
-APP.get('/slack/auth*', (request, response) => {
-  console.log(request);
+APP.get('/slack/auth', (request, response) => {
+  console.log(request.query.code);
 })
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
