@@ -30,7 +30,7 @@ APP.get('/slack/auth', (request, response) => {
   console.log(request.query.code);
   let code = request.query.code;
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, response, body){
-    console.log(response);
+    console.log(body);
   })
 })
 
