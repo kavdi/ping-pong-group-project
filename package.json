@@ -22,6 +22,7 @@
     "express": "^4.16.1",
     "express-request-proxy": "^2.0.0",
     "pg": "^7.3.0",
+    "relax": "^0.1.1",
     "sf": "^0.1.9"
   }
 }
