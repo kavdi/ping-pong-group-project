@@ -15,3 +15,13 @@ var app = app || {};
 
 app.LeaderBoard.fetchAll(homeView.populateRankings);
 })(app);
+
+
+/*
+GET RANGE OF PLAYERS
+SELECT name FROM player WHERE playerrank BETWEEN '1' and '3';
+
+var att  = result[0].curattend;
+ client.query("INSERT INTO archive (attendance) VALUES (?);", [att], function(err,info){ });
+
+*/
