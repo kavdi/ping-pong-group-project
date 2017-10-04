@@ -1,4 +1,6 @@
 footer {
+  position: relative;
+  z-index: 5;
   color: lightgray;
   font-family: 'Muli', sans-serif;
   padding: 2em 0em;

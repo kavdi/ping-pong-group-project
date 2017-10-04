@@ -3,14 +3,15 @@
   width: 90%;
   margin: auto;
   z-index: 5;
-  padding-top: 8em;
+  padding: 9em 0em;
 }
 
 .tableContainer {
   vertical-align: top;
   width: 60%;
   display: inline-block;
-  border: thin solid lightgray;  margin: 1em;
+  border: thin solid lightgray;  
+  margin: 1em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 5px 5px 5px #888888;

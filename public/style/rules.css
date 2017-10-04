@@ -1,0 +1,21 @@
+#houseRules {
+  font-family: 'Muli', sans-serif;
+  border: 3px double white;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#houseRules h2 {
+  text-shadow: 1px 1px white,
+                -1px 1px white,
+                1px -1px white,
+                -1px -1px white;
+  color: black;
+  border-bottom: 1px solid white;
+  padding-bottom: 1em;
+}
+
+#houseRules li {
+  text-align: justify;
+  color: #8e005c;
+}
