@@ -45,6 +45,16 @@ APP.get('/slack/auth', (request, response) => {
   })
 })
 
+APP.get('/api/players', function(req, res){
+  CLIENT.query(
+    `SELECT * FROM player;`).then(
+    function(data){
+      console.log(data.rows)
+      // res.send(data)
+    }
+  )
+})
+
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
@@ -56,8 +66,12 @@ function createTable() {
       name VARCHAR(250) NOT NULL,
       class VARCHAR(250) NOT NULL,
       player_id VARCHAR(250) NOT NULL UNIQUE,
-      playerRank VARCHAR(250)
+      playerRank VARCHAR(250),
+      wins INT,
+      losses INT,
+      games_played INT,
+      RIVAL VARCHAR(250)
     );`
   )
-  .catch(console.error);
+    .catch(console.error);
 }
