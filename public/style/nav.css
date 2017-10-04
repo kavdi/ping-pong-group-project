@@ -2,13 +2,9 @@ nav {
   overflow: auto;
   width: 100%;
   margin: 0;
-  height: 20em;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0d8ef+0,ddf1f9+47,feffff+100 */
-  background: #a0d8ef; /* Old browsers */
-  background: -moz-linear-gradient(top, #a0d8ef 0%, #ddf1f9 47%, #feffff 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #a0d8ef 0%,#ddf1f9 47%,#feffff 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #a0d8ef 0%,#ddf1f9 47%,#feffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0d8ef', endColorstr='#feffff',GradientType=0 ); /* IE6-9 */
+  height: 40em;
+  background-color: #63edff;
+  /*#a0d8ef;*/
 }
 
 .pongMe {
@@ -18,21 +14,75 @@ nav {
   font-size: 5em;
   float: left;
   left: 20px;
-  top: 10px;
+  top: -200px;
   line-height: 1;
   text-align: center;
-  z-index: 5;
+  z-index: 10;
   text-shadow: 1px 1px white,
                 2px 2px 8px black;
+  animation: pongme 2s forwards;
+  animation-delay: 0.1s;
+  animation-duration: 1s;
+}
+
+@keyframes pongme {
+  50% { top: 75px; }
+  100% { top: 10px; }
+}
+
+.subTitle {
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  z-index: 10;
+  position: absolute;
+  top: 36%;
+  right: 14%;
+  width: 70%;
+  font-size: 3em;
+  text-align: center;
+  animation: subtitle 2s forwards;
+  animation-delay: 0.1s;
+  animation-duration: 3s;
+  opacity: 0;
+}
+
+@keyframes subtitle {
+  100% { opacity: 1; }
+}
+
+.arrow {
+  color: white;
+  z-index: 10;
+  position: absolute;
+  top: -10%;
+  right: 50%;
+  animation: arrow 2s forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1.5s;
+  opacity: 0;
+}
+
+@keyframes arrow {
+  50% { top: 82%; opacity: 1; }
+  100% { top: 80%; opacity: 1; }
 }
 
 .navItems {
-  right: 0;
+  right: -25%;
   position: absolute;
   z-index: 5;
   font-family: 'Muli', sans-serif;
   text-align: right;
+  animation: nav 2s forwards;
+  animation-delay: 1s;
+  animation-duration: 2.5s;
 }
+
+@keyframes nav {
+  50% { right: 1%; }
+  100% { right: 0%; position: fixed; }
+}
+
 .navItems ul {
   margin-top: 0;
   padding-top: 1em;
@@ -59,13 +109,13 @@ nav {
 }
 
 .circleOne {
-  top: -100px;
+  top: -500px;
   left: -50px;
   height: 22em;
   width: 22em;
   border-radius: 100%;
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   box-shadow: 1px 1px #3ab9fd,
               2px 2px #0070b3,
               4px 4px #f06f3a,
@@ -73,17 +123,25 @@ nav {
               8px 8px #e5cfb0,
               10px 10px #e5cfb0,
               12px 12px black;
+animation: circleone 2s forwards;
+animation-delay: 0.5s;
+animation-duration: 1s;
+}
+
+@keyframes circleone {
+50% { top: -50px; }
+100% { top: -100px; }
 }
 
 .circleTwo {
   top: -86px;
-  left: -30px;
+  left: -500px;
   height: 23em;
   width: 23em;
   border-radius: 100%;
   background-color: #fd382d;
   position: absolute;
-  z-index: 1;
+  z-index: 5;
   box-shadow:
               1px 1px #ff7069,
               2px 2px #c70800,
@@ -92,10 +150,18 @@ nav {
               8px 8px #e5cfb0,
               10px 10px #e5cfb0,
               12px 12px black;
+animation: circletwo 2s forwards;
+animation-delay: 1s;
+animation-duration: 1s;
+}
+
+@keyframes circletwo {
+50% { left: 0px; }
+100% { left: -30px; }
 }
 
 .circleThree {
-  z-index: 1;
+  z-index: 4;
   position: absolute;
   top: 100px;
   right: -70px;
@@ -106,14 +172,21 @@ nav {
 }
 
 .circleFour {
-  z-index: 2;
+  z-index: 4;
   position: absolute;
-  top: -30px;
+  top: -200px;
   right: -30px;
   background-color: #fda605;
   height: 10em;
   width: 10em;
   border-radius: 100%;
+  animation: circlefour 2s forwards;
+  animation-delay: 1s;
+  animation-duration: 1.2s;
+}
+
+@keyframes circlefour {
+  100% { top: -30px; }
 }
 
 #stars {
@@ -128,12 +201,139 @@ nav {
 }
 
 .topBarOne {
+  z-index: 3;
   position: absolute;
   width: 100%;
   background-color: #313b48;
   height: 4em;
   border-bottom-left-radius: 100%;
   border-bottom-right-radius: 100%;
+}
+
+.topBarTwo {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  background-color: #9fb0b7;
+  height: 5em;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+}
+
+#buffer {
+  z-index: 1;
+  position: relative;
+  bottom: -20em;
+  margin: 0;
+  width: 100%;
+  height: 20em;
+  background-color: #63edff;
+}
+
+#underBuffer {
+  bottom: -20em;
+  margin: 0;
+  width: 100%;
+  height: 20em;
+  background-color: white;
+}
+
+.blockOne {
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  position: absolute;
+  z-index: 1;
+  left: -15%;
+  width: 25em;
+  background-color: white;
+  height: 40em;
+  bottom: -32em;
+  z-index: 2;
+}
+
+.blockTwo {
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  position: absolute;
+  z-index: 1;
+  right: -10%;
+  width: 25em;
+  background-color: white;
+  height: 30em;
+  bottom: -30em;
+  z-index: 2;
+}
+
+.blockThree {
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 5%;
+  width: 35em;
+  background-color: white;
+  height: 30em;
+  bottom: -30em;
+  z-index: 2;
+}
+
+.blockFour {
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  position: absolute;
+  z-index: 1;
+  right: 15%;
+  width: 20em;
+  background-color: white;
+  height: 30em;
+  bottom: -32em;
+  z-index: 2;
+}
+
+.blockFive {
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+  position: absolute;
+  z-index: 1;
+  right: 30%;
+  width: 20em;
+  background-color: white;
+  height: 35em;
+  bottom: -35em;
+  z-index: 2;
+}
+
+.ballOne {
+  bottom: -100px;
+  right: 92%;
+  position: absolute;
+  z-index: 10;
+  height: 3em;
+  width: 3em;
+  background-color: rgb(255, 74, 191);
+  border-radius: 100%;
+}
+
+.ballTwo {
+  bottom: -450px;
+  left: 80%;
+  position: absolute;
+  z-index: 10;
+  height: 5em;
+  width: 5em;
+  background-color: orange;
+  border-radius: 100%;
+}
+
+.ballThree {
+  bottom: -900px;
+  left: 85%;
+  position: absolute;
+  z-index: 10;
+  height: 4em;
+  width: 4em;
+  background-color: #63edff;
+  border-radius: 100%;
 }
 
 @media all and (max-width: 600px) {

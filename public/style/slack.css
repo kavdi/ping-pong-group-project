@@ -4,14 +4,21 @@
   border-radius: 10px;
   position: absolute;
   right: 140px;
-  top: 7px;
+  top: -100px;
   transition: background-color 0.5s;
   width: 11em;
-  z-index: 4;
+  z-index: 10;
+  animation: slackbutton 2s forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1.5s;
+}
+
+@keyframes slackbutton {
+  100% { top: 15px; position: fixed; }
 }
 
 #slackButton:hover {
-  background-color: #f1f1f1;
+  background-color: lightgray;
 }
 
 #slackIcon {
