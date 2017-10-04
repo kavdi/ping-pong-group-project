@@ -35,7 +35,7 @@ APP.get('/slack/auth', (request, response) => {
       CLIENT.query(
         'INSERT INTO player(name, class, player_id) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
         [body.user.name, body.team.id, body.user.id]
-      ).then(() => {response.redirect('/user'); response.send(body.user.id)})
+      ).then(() => response.redirect('/user')).then(() => response.send(body.user.id))
 
     }
     else {
