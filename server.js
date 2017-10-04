@@ -6,10 +6,13 @@ const EX = require('express');
 const PARSER = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const APP = EX();
+const SLACK = require('node-slack');
 // const REQUEST_PROXY = require('express-request-proxy');
 const REQUEST = require('request');
 const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
+const hook_url = 'https://hooks.slack.com/services/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';
+const slack = new SLACK(hook_url, options);
 
 CLIENT.connect();
 CLIENT.on('error', err => console.error(err));
@@ -21,7 +24,7 @@ APP.use(EX.static('./public'));
 createTable();
 
 APP.get('/leaders', (request, response) =>{
-  CLIENT.query(`SELECT * FROM player ORDER BY playerrank ASC`)
+  CLIENT.query(`SELECT * FROM player ORDER BY player_rank ASC`)
   .then(result =>response.send(result.rows))
 });
 
