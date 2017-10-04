@@ -44,12 +44,22 @@
     <div class="rellax heroOne circleOne" data-rellax-speed="8"></div>
     <div class="rellax circleTwo" data-rellax-speed="6"></div>
     <div class="rellax circleThree" data-rellax-speed="2"></div>
-    <div class="rellax circleFour" data-rellax-speed="6"></div>
+    <div class="rellax circleFour" data-rellax-speed="6">
+      <span id="stars" >
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      </span>
+    </div>
     <div class="rellax circleFive" data-rellax-speed="12"></div>
     <div class="rellax topBarOne" data-rellax-speed="-4"></div>
   </nav>
 
-    <a id="slackButton" href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=249517292576.249778150145"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+  <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=249517292576.249778150145">
+    <div id="slackButton">
+      <img id="slackIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt=""/><p>Sign in with <em>Slack</em></p>
+    </div>
+  </a>
   <!-- WILL BE HANDLEBAR TEMPLATES--->
   <section id="leader-board-table" data-content="leaders">
     <table>
@@ -61,7 +71,12 @@
       </tr>
       <!-- Template Goes Here-->
     </table>
+    <aside id="houseRules">
+      <h2>House Rules</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </aside>
   </section>
+
   <!--ABOUT SECTION-->
   <section id="about-page" data-content="about-content">
     <h2>About the Developers</h2>

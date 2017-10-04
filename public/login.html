@@ -2,9 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sigmar+One" rel="stylesheet">
+    <link rel="stylesheet" href="/style/slack.css">
     <title>Slack login page</title>
   </head>
   <body>
-  <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=249517292576.249778150145"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+    <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=249517292576.249778150145">
+      <div id="slackButton">
+        <img id="slackIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt=""/><p>Sign in with <em>Slack</em></p>
+      </div>
+    </a>
   </body>
 </html>
