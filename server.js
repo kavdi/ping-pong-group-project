@@ -29,17 +29,17 @@ APP.get('/leaders', (request, response) =>{
 APP.get('/slack/auth', (request, response) => {
   console.log(request.query.code);
   let code = request.query.code;
-  REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, response, body){
+  REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, res, body){
     console.log(body);
     body = JSON.parse(body);
     if(body.ok === true){
       CLIENT.query(
       'INSERT INTO player(name, class, player_id) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
       [body.user.name, body.team.id, body.user.id]
-    ).then(result => response.sendFile('index.html', {root: './public'}))
+    ).then(result => response.redirect('/'))
     }else{
       console.log('NO ENTRY');
-      response.sendFile('index.html', {root: './public'})
+      response.redirect('/')
     }
   })
 })
