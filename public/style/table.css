@@ -10,7 +10,8 @@
   vertical-align: top;
   width: 60%;
   display: inline-block;
-  border: thin solid lightgray;  margin: 1em;
+  border: thin solid lightgray;  
+  margin: 1em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 5px 5px 5px #888888;
