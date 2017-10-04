@@ -12,16 +12,13 @@ nav {
 }
 
 .pongMe {
-  -ms-transform: rotate(-15deg);
-  -webkit-transform: rotate(-15deg);
-  transform: rotate(-15deg);
   color: #fda605;
   position: absolute;
   font-family: 'Sigmar One', cursive;
   font-size: 5em;
   float: left;
-  left: 5%;
-  top: 5%;
+  left: 20px;
+  top: 10px;
   line-height: 1;
   text-align: center;
   z-index: 5;
