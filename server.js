@@ -66,11 +66,11 @@ function createTable() {
       name VARCHAR(250) NOT NULL,
       class VARCHAR(250) NOT NULL,
       player_id VARCHAR(250) NOT NULL UNIQUE,
-      playerRank VARCHAR(250),
+      player_rank VARCHAR(250),
       wins INT,
       losses INT,
       games_played INT,
-      RIVAL VARCHAR(250)
+      rival VARCHAR(250)
     );`
   )
     .catch(console.error);
