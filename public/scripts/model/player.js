@@ -3,9 +3,9 @@
 var app = app || {};
 
 (function(module) {
-  function Player(name, user_id) {
-    this.name = name,
-    this.user_id = user_id,
+  function Player(rawData) {
+    this.name = rawData.name,
+    this.user_id = rawData.player_id,
     this.wins = 0,
     this.losses = 0,
     this.games_played = 0,
@@ -19,8 +19,7 @@ var app = app || {};
   Player.loadPlayers = function(){
     $.get('/api/players', function(request, response) {
       console.log(request);
-      // console.log(response);
-      // Player.all = response.map(function(player) {return new Player(player)})
+      Player.all = request.map(function(player) {return new Player(player)})
     // }).then(callback, err => console.error(err, 'error'))
     })}
   module.Player = Player

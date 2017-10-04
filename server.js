@@ -49,8 +49,8 @@ APP.get('/api/players', function(req, res){
   CLIENT.query(
     `SELECT * FROM player;`).then(
     function(data){
-      console.log(data.rows)
-      res.send(data.rows)
+      // console.log(data.rows)
+      res.send(JSON.stringify(data.rows))
     }
   )
 })
