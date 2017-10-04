@@ -29,31 +29,26 @@
 
 .subHeader {
   margin: 0;
-  padding: 1em;
+  padding: 3em;
   background-color: #fda605;
   color: white;
 }
 
 .aboutContainer {
-  padding: 2em;
+  padding: 1em;
   background-color: white;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .aboutMe {
   z-index: 10;
   padding: 0.5em;
   background-color: white;
-  transition: border-bottom 0.3s;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  transition: background-color 0.3s;
   min-height: 200px;
 }
 
 .aboutMe:hover {
-  border-bottom: 10px solid black;
-  border-collapse: collapse;
+  background-color: #63edff;
 }
 
 h3 {
@@ -62,8 +57,6 @@ h3 {
 
 .aboutBio {
   display: inline;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 .aboutBio, img {
