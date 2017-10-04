@@ -6,6 +6,7 @@ var app = app || {};
   const aboutController = {};
 
   aboutController.index = () => {
+    $('#slackButton').hide();
     $('#leader-board-table').hide();
     $('#about-page').fadeIn(1000);
   };
