@@ -31,7 +31,7 @@ APP.get('/slack/auth', (request, response) => {
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, res, body){
     console.log(body);
     body = JSON.parse(body);
-    if(body.ok === true && body.team.id === 'T7C81H4N9'){
+    if(body.ok === true){ // && body.team.id === 'T7C81H4N9'
       CLIENT.query(
         'INSERT INTO player(name, class, player_id) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
         [body.user.name, body.team.id, body.user.id]
