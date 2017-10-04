@@ -1,15 +1,58 @@
-section {
+#about-page {
+  position: relative;
+  z-index: 5;
   margin: auto;
-  width: 90%;
+  width: 80%;
   display: none;
+  margin-top: 6em;
+  margin-bottom: 6em;
+  font-family: 'Muli', sans-serif;
+  border: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+#about-page h2 {
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #ffa500;
+  font-family: 'Sigmar One', cursive;
+  font-size: 2em;
+  background-color: #129be8;
+  text-shadow: 2px 2px 8px #000000;
+  margin: 0;
+  padding: 1em;
+  border-bottom: 6px double black;
+}
+
+.subHeader {
+  margin: 0;
+  padding: 1em;
+  background-color: #fda605;
+  color: white;
+  font-size: 1.3em;
+}
+
+.aboutContainer {
+  padding: 2em;
+  background-color: white;
 }
 
 .aboutMe {
   z-index: 10;
-  border: 1px solid lightgray;
   padding: 0.5em;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px #888888;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.aboutMe:hover {
+  background-color: #ff4abf;
+}
+
+h3 {
+
 }
 
 .aboutBio {
@@ -17,11 +60,17 @@ section {
 }
 
 .aboutBio, img {
-  float: left;
-  padding-right: 1em;
+  vertical-align: text-top;
+  padding: 0em 0.5em;
 }
 
 .social {
-  display: inline-block;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
   float: right;
 }
