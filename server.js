@@ -50,7 +50,7 @@ APP.get('/api/players', function(req, res){
     `SELECT * FROM player;`).then(
     function(data){
       console.log(data.rows)
-      // res.send(data)
+      res.send(data.rows)
     }
   )
 })
