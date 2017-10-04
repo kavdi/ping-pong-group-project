@@ -1,6 +1,9 @@
 #leader-board-table {
+  position: relative;
   width: 90%;
   margin: auto;
+  z-index: 5;
+  padding-top: 8em;
 }
 
 .tableContainer {

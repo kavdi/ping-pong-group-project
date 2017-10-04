@@ -7,7 +7,7 @@ var app = app || {};
 
   aboutController.index = () => {
     $('#leader-board-table').hide();
-    $('#about-page').fadeIn();
+    $('#about-page').fadeIn(1000);
   };
 
   module.aboutController = aboutController;
