@@ -8,6 +8,8 @@ var app = app || {};
     $('#about-page').hide();
     $('#player-table').show();
     $('.playerContainer').show();
+    $('.subTitle').html(`Who's using <em>Pong Me</em>? Check below!`);
+
     app.Player.loadPlayers(app.playerView.populatePlayers);
   };
 

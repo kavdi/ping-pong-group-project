@@ -50,11 +50,6 @@ nav {
   100% { opacity: 1; }
 }
 
-@keyframes arrow {
-  50% { top: 82%; opacity: 1; }
-  100% { top: 80%; opacity: 1; }
-}
-
 .navItems {
   right: -25%;
   position: absolute;

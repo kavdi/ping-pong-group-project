@@ -11,6 +11,7 @@ var app = app || {};
     $('#player-table').hide();
     $('#about-page').fadeIn(1000);
     $('.playerContainer').hide();
+    $('.subTitle').html(`Find out more about the team that built <em>Pong Me!</em>`);
   };
 
   module.aboutController = aboutController;
