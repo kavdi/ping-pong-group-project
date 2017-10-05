@@ -1,0 +1,20 @@
+INSERT INTO player (name , class, player_id, rank, wins, losses, games_played, rival)
+VALUES
+('Kavdi','this class','AAAAAAAAA',1,19,0,19,'Steve'),
+('Sue','this class','BBBBBBBBB',2,10,4,14,'Steve'),
+('Matt','this class','CCCCCCCCC',3,8,2,10,'Steve'),
+('Nate','this class','DDDDDDDDD',4,7,7,14,'Steve'),
+('Shayne','this class','EEEEEEEEE',5,10,9,19,'Steve'),
+('Paul','this class','FFFFFFFFF',6,10,9,19,'Steve'),
+('Pam','this class','GGGGGGGGGG',7,10,9,19,'Steve'),
+('Mike','this class','HHHHHHHHH',8,10,9,19,'Steve'),
+('David','this class','IIIIIIIII',9,10,9,19,'Steve'),
+('Nick','this class','JJJJJJJJJ',10,10,9,19,'Steve'),
+('Jen','this class','KKKKKKKKK',11,10,9,19,'Steve'),
+('Romeo','this class','LLLLLLLLL',11,10,9,19,'Steve'),
+('Will','this class','MMMMMMMMM',11,10,9,19,'Steve'),
+('Mary','this class','NNNNNNNNN',11,1,0,1,'Steve'),
+('Jerome','this class','OOOOOOOOO',11,2,2,4,'Steve'),
+('John','this class','PPPPPPPPP',11,0,7,7,'Steve'),
+('Carol','this class','QQQQQQQQQ',11,1,4,5,'Steve'),
+('Gabe','this class','RRRRRRRRR',11,0,0,0,'Steve');
