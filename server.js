@@ -61,7 +61,7 @@ APP.get('/api/players', function(req, res){
 APP.get('/challenge', function(req, res){
   console.log(req);
   slack.send({
-    text: `<@${req.query.challenger}> has challenged <@${req.query.defender}, may the best one win!`,
+    text: `<@${req.query.challenger}> has challenged <@${req.query.defender}, step up or be branded a coward!`,
     username: 'The Ref'
   })
   .then(() => res.send({success: true}))
