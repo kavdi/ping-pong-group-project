@@ -1,0 +1,15 @@
+.playerContainer {
+  margin: auto;
+  width: 80%;
+  position: relative;
+  z-index: 2;
+  background-color: black;
+}
+
+#player-template {
+  margin: auto;
+  width: 80%;
+  position: relative;
+  z-index: 2;
+  background-color: black;
+}
