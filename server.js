@@ -58,9 +58,14 @@ APP.get('/api/players', function(req, res){
   )
 })
 
-slack.send({
-  text: 'Howdy!',
-  username: 'Bot'
+APP.get('/challenge', function(req, res){
+
+  slack.send({
+    text: '<@U7D0NLTDL> challenges you!',
+    username: 'The Ref'
+  })
+  res.console.log(res);
+
 })
 
 
