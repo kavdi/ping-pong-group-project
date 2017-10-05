@@ -11,6 +11,17 @@
   box-shadow: 5px 5px 5px #888888;
 }
 
+.playerContainer h3 {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  margin: 0;
+  padding: 1em;
+  background-color: #ffa501;
+  font-size: 2em;
+  font-family: 'Muli', sans-serif;
+}
+
 #player-table {
   margin: auto;
   width: 100%;
@@ -18,7 +29,7 @@
   background-color: #e8e8e8;
   border-collapse: collapse;
   padding: 1em;
-  
+
 }
 
 #player-table tr:nth-child(odd) {
