@@ -10,7 +10,7 @@
   vertical-align: top;
   width: 60%;
   display: inline-block;
-  border: thin solid lightgray;  
+  border: thin solid lightgray;
   margin: 1em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -33,7 +33,7 @@
   text-shadow: 2px 2px 8px #000000;
 }
 
-table {
+#leaderTable {
   font-family: 'Muli', sans-serif;
   width: 100%;
   background-color: #e8e8e8;
@@ -41,32 +41,32 @@ table {
   padding: 1em;
 }
 
-tr:nth-child(odd) {
+#leaderTable tr:nth-child(odd) {
   background-color: #63edff;
   transition: background-color 0.2s, color 0.2s;
 }
 
-tr:nth-child(even) {
+#leaderTable tr:nth-child(even) {
   background-color: white;
   transition: background-color 0.2s, color 0.2s;
 }
 
-tr:hover {
+#leaderTable tr:hover {
   color: white;
   background-color: #fda605;
 }
 
-td {
+#leaderTable td {
   padding: 1em;
 }
 
-tbody th {
+#leaderTable tbody th {
   background-color: #fda605;
   color: white;
   font-size: 1.3em;
 }
 
-aside {
+#leader-board-table aside {
   vertical-align: top;
   width: 30%;
   display: inline-block;
