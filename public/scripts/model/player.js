@@ -14,6 +14,7 @@ var app = app || {};
     // this.last_activity = new Date()  // Stretch Goal
   }
 
+
   Player.all = [];
 
   Player.loadPlayers = function(callback){
@@ -29,9 +30,25 @@ var app = app || {};
     var html = template(this);
     return html
   }
-//NOTE:can I listen for two urls
-  Player.challengeOptions = function(show){
-    $.get('/currentPlayer', {challenger: app.Player.localUser}).then(show);
+
+  //assume winner is known
+  Player.swapRank = function(playerOneData,playerTwoData){
+    let swap = 0;
+
+    swap = playerTwoData.rank;
+    playerTwoData.rank = playerOneData.rank;
+    playerOneData.rank = swap;
+
+    //put request
+    $.ajax({
+      url: '/changeRanks',
+      method: 'PUT',
+      data: {
+        playerOne: playerOneData,
+        playerTwo: playerTwoData,
+      }
+    });
+
   }
 
   module.Player = Player
