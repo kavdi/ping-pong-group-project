@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Pong Me</title>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Muli|Sigmar+One" rel="stylesheet">
-    <link rel="stylesheet" href="/style/slack.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- S T Y L E S H E E T S -->
 
     <link rel="stylesheet" href="/style/base.css" type="text/css"/>
     <link rel="stylesheet" href="/style/about.css" type="text/css"/>
@@ -14,32 +16,25 @@
     <link rel="stylesheet" href="/style/leaderboard.css" type="text/css"/>
     <link rel="stylesheet" href="/style/table.css" type="text/css"/>
     <link rel="stylesheet" href="/style/rules.css" type="text/css"/>
+    <link rel="stylesheet" href="/style/dash.css" type="text/css"/>
+    <link rel="stylesheet" href="/style/button.css" type="text/css"/>
 
-    <title>Slack login page</title>
+    <!-- F O N T S -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sigmar+One" rel="stylesheet">
 
-    <script id="player-template" type="text/x-handlebars-template">
-      <tr>
-        <td>{{name}}</td>
-        <td>{{class}}</td>
-        <td>{{rank}}</td>
-        <td>{{wins}}</td>
-        <td>{{losses}}</td>
-        <td>{{games_played}}</td>
-        <td>{{rival}}</td>
-      </tr>
-    </script>
-    <body>
+    <!-- L I B S -->
+    <script src="https://use.fontawesome.com/021f7366b5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- F A V I C O N -->
+    <link href="https://rlv.zcache.com/art_of_color_palette_ping_pong_paddle-r4de3e6543cb6417fb6fc1419449713b1_zvmtd_324.jpg?rlvnet=1" rel="icon" type="image/x-icon" />
   </head>
   <body>
 
-    <table id="player-table"></table>
+    <div class="buttonStyle">Pong Me</div>
 
-    <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=249517292576.249778150145">
-      <div id="slackButton">
-        <img id="slackIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt=""/><p>Sign in with <em>Slack</em></p>
-      </div>
-    </a>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/vendor/scripts/handlebars.js"></script>
     <script src="/vendor/scripts/page.js"></script>
