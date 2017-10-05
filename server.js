@@ -70,7 +70,7 @@ APP.get('/challenge', function(req, res){
 
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
-
+//TODO: fix the code!
 /* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
 APP.get('/currentPlayer', (request, response) => {
 //NOTE - look into passing objects to this block
@@ -130,6 +130,7 @@ APP.get('/changeRanks', (request, response) =>{
   );
 
 });
+//end.
 
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
