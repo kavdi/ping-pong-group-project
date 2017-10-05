@@ -21,7 +21,8 @@ APP.use(PARSER.json());
 APP.use(PARSER.urlencoded({extended: true}));
 APP.use(EX.static('./public'));
 
-createTable();
+createPlayerTable();
+createMatchTable();
 
 APP.get('/leaders', (request, response) =>{
   CLIENT.query(`SELECT * FROM player ORDER BY rank ASC`)
@@ -70,12 +71,10 @@ APP.get('/challenge', function(req, res){
 })
 
 
-//TODO:ask if we can use same initiation url
+
 /* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
-APP.get('/currentPlayer', (request, response) => {
-//NOTE - look into passing objects to this block
-//  function(playerData){
-    //var name = playerData['name'];
+APP.get('/findChallengers', (request, response) => {
+
   CLIENT.query(
     `SELECT player_id, rank
     FROM player
@@ -84,63 +83,44 @@ APP.get('/currentPlayer', (request, response) => {
                   WHERE player_id = $1)
     ORDER BY rank DESC LIMIT 2`, [request.query.challenger]
   )
-  .then(console.log(response))
-//}
+  .then(function(data){
+    response.send(data.rows);
+  })
 });
 
-/*NOTE:This is being done above
-APP.get('/findChallengers', (request, response) => {
-    var upperLimit = parseInt(playerObj['rank']) + 2;
-
-    CLIENT.query(`SELECT name FROM player WHERE rank < $1;`,
-      [upperLimit],
-      function(err, info){
-        console.log("no valid challenges");
-      }
-    )
-
+APP.put('/changeRanks', (request, response) => {
+  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+       [playerOne.rank,playerOne.name],
+       function(err, info){
+         console.log("invalid rank change");
+       }
+     );
+  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+        [playerTwo.rank, playerTwo.name],
+        function(err, info){
+            console.log("invalid rank change");
+        }
+      );
 });
-*/
-//NOTE: apply this code after above code is good.
-// APP.get('/changeRanks', (request, response) =>{
-//   let playerOne, playerTwo, whoWon = {};
-//
-//   var swap = 0;
-//
-//   if(playerOne.name == whoWon && playerOne.rank > playerTwo.rank){
-//     console.log("swap here");
-//     swap = playerTwo.rank;
-//     playerTwo.rank = playerOne.rank;
-//     playerOne.rank = swap;
-//   }else if(playerTwo.name == whoWon && playerTwo.rank > playerOne.rank){
-//     console.log("swap here");
-//     swap = playerOne.rank;
-//     playerOne.rank = playerTwo.rank;
-//     playerTwo.rank = swap;
-//   }
-//
-//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-//     [playerOne.rank,playerOne.name],
-//     function(err, info){
-//       console.log("invalid rank change");
-//     }
-//   );
-//
-//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-//     [playerTwo.rank, playerTwo.name],
-//     function(err, info){
-//         console.log("invalid rank change");
-//     }
-//   );
-//
-// });
-//end.
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
-function createTable() {
+function createMatchTable(){
+  CLIENT.query(`
+    CREATE TABLE IF NOT EXISTS
+    match (
+      id SERIAL PRIMARY KEY,
+      playerOne VARCHAR (250) NOT NULL,
+      playerTwo VARCHAR (250) NOT NULL,
+      winner VARCHAR (250) NOT NULL,
+      loser VARCHAR (250) NOT NULL
+    )
+    `);
+}
+
+function createPlayerTable() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
     player (
