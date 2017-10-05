@@ -10,7 +10,7 @@ var app = app || {};
   //WILL POPULATE LEADERBOARD RANKINGS
   playerView.populatePlayers = function(){
     //MORE TO FOLLOW
-    app.Player.all.forEach(player =>{
+    app.Player.rankedPlayers().forEach(player =>{
       console.log(player);
       $('#player-table').append(player.toHtml());
     });
