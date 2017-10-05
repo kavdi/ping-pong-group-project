@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/style/table.css" type="text/css"/>
   <link rel="stylesheet" href="/style/rules.css" type="text/css"/>
   <link rel="stylesheet" href="/style/dash.css" type="text/css"/>
+  <link rel="stylesheet" href="/style/button.css" type="text/css"/>
 
   <!-- F O N T S -->
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -35,7 +36,11 @@
   <tr>
     <td>{{playerrank}}</td>
     <td>{{name}}</td>
-    <td>{{class}}</td>
+    <td>
+      <a class="challengeButton" player-id="{{player_id}}">
+        <div class="buttonStyle">Challenge</div>
+      <a>
+    </td>
   </tr>
 </script>
 
@@ -43,7 +48,7 @@
   <tr>
     <td>{{name}}</td>
     <td>{{class}}</td>
-    <td>{{rank}}</td>
+    <td>{{player_rank}}</td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{games_played}}</td>
@@ -99,14 +104,28 @@
     </div>
   </a>
 
+  <!-- PLAYER DASH -->
   <div class="dash">
     <img id="dash_icon" src="../img/ping_pong1600.png" alt="">
     <div class="dash_stats">
       <p id="dash_name" >Gabriel Meringolo</p>
-       <p id="dash_win_loss" >wins: <span class="red bold">0</span> losses: <span class="red bold">14</span></p>
-       <p id="dash_ranking" >Unranked</p>
+      <p id="dash_win_loss" >wins: <span class="red bold">0</span> losses: <span class="red bold">14</span></p>
+      <p id="dash_ranking" >Unranked</p>
     </div>
-  </div>
+    <div id="dash_results">
+      <hr id="dash_hr">
+      <p id='dash_select'>Select the winner of the match.</p>
+      <div id="dash_buttons">
+        <a class="dash_a" id="local_user_dash_button" player-id="">
+          <div class="dash_buttonStyle">Gabe</div>
+        </a>
+        <a class="dash_a" id="other_user_dash_button" player-id="">
+          <div class="dash_buttonStyle">Shayne</div>
+        </a>
+      </div>
+        <p id="dash_sub">Both players need to agree for match to be posted.</p>
+      </div>
+    </div>
 
   <!-- PLAYERS TEMPLATE RENDER -->
   <div class="playerContainer">
@@ -121,11 +140,70 @@
           <!--PLACE HOLDER - WILL BE POPULATED BY TEMPLATE-->
           <th>Rank</th>
           <th>Name</th>
-          <th>Class</th>
+          <th>Challenge</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Kavdi</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>A Fancy Dog</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Fart Face</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>The Crusher</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Ganghis Pong</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Pinky Stinker</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Flabby Babs</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Sumsum McGee</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Jane Blow</td>
+          <td>
+            <a class="challengeButton" player-id="">
+              <div class="buttonStyle">Pong Me!</div>
+            <a>
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Joe Shmoe</td>
+          <td>
+            <a class="challengeButton" player-id="">
+              <div class="buttonStyle">Pong Me!</div>
+            <a>
+          </td>
         </tr>
         <!-- Template Goes Here-->
       </table>
     </div>
+
     <aside id="houseRules" class="heroThree">
       <h2>The Rules</h2>
       <ul>
@@ -138,6 +216,7 @@
         <li>Is this the last rule?</li>
       </ul>
     </aside>
+
   </section>
 
   <!--ABOUT SECTION-->
@@ -193,14 +272,15 @@
     <section class="aboutContainer">
       <div class="aboutMe">
         <div class="AboutBio">
-          <img class="floatRight" src="http://via.placeholder.com/175x175" />
-          <h3>Shayne</h3>
+          <img class="floatRight" src="/img/shayne.jpg" width="175"/>
+          <h3>Shayne Smith</h3>
           <div class="social">
-            <i class="fa fa-github-alt fa-2x" aria-hidden="true"></i>
-            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+            <a href="https://github.com/shaynereedsmith" target="_blank"><i class="aboutSocial fa fa-github-alt fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/shayne-smith-44153734/" target="_blank"><i class="aboutSocial fa fa-linkedin-square fa-2x" aria-hidden="true"></i><a>
+            <a href="https://angel.co/shayne-smith-4?al_content=view+your+profile&al_source=transaction_feed%2Fnetwork_sidebar" target="_blank"><i class="aboutSocial fa fa-angellist fa-2x" aria-hidden="true"></i></a>
+            <a href="mailto:shaynereedsmith@yahoo.com"><i class="aboutSocial fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Husband and father. Originally from the dry-side of Washington State, Shayne has always had an eye for design. Focusing on frontend, UX/UI, and visual storytelling, Shayne strives to make each project he works on more visually amazing than the last. Also, he illustrates. If you like what you see here, go ahead and hit him up!</p>
         </div>
       </div>
     </section>

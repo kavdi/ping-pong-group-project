@@ -1,0 +1,28 @@
+.challengeButton {
+  display: block;
+  max-height: 2em;
+}
+
+.buttonStyle {
+  color: black;
+  position: relative;
+  font-family: 'Muli', sans-serif;
+  background-color: red;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0.5em;
+  transition: border-bottom 0.1s, bottom 0.2s;
+}
+
+.buttonStyle:hover {
+  bottom: 5px;
+  cursor: pointer;
+  border-bottom: 5px solid darkred;
+}
+.aboutSocial {
+  color: black;
+}
+
+.aboutSocial:hover {
+  color: red;
+}
