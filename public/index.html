@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/style/table.css" type="text/css"/>
   <link rel="stylesheet" href="/style/rules.css" type="text/css"/>
   <link rel="stylesheet" href="/style/dash.css" type="text/css"/>
+  <link rel="stylesheet" href="/style/button.css" type="text/css"/>
 
   <!-- F O N T S -->
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -35,7 +36,11 @@
   <tr>
     <td>{{playerrank}}</td>
     <td>{{name}}</td>
-    <td>{{class}}</td>
+    <td>
+      <a class="challengeButton" player-id="{{player_id}}">
+        <div class="buttonStyle">Challenge</div>
+      <a>
+    </td>
   </tr>
 </script>
 
@@ -43,7 +48,7 @@
   <tr>
     <td>{{name}}</td>
     <td>{{class}}</td>
-    <td>{{rank}}</td>
+    <td>{{player_rank}}</td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{games_played}}</td>
@@ -121,11 +126,70 @@
           <!--PLACE HOLDER - WILL BE POPULATED BY TEMPLATE-->
           <th>Rank</th>
           <th>Name</th>
-          <th>Class</th>
+          <th>Challenge</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Kavdi</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>A Fancy Dog</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Fart Face</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>The Crusher</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Ganghis Pong</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Pinky Stinker</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Flabby Babs</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Sumsum McGee</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Jane Blow</td>
+          <td>
+            <a class="challengeButton" player-id="">
+              <div class="buttonStyle">Pong Me!</div>
+            <a>
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Joe Shmoe</td>
+          <td>
+            <a class="challengeButton" player-id="">
+              <div class="buttonStyle">Pong Me!</div>
+            <a>
+          </td>
         </tr>
         <!-- Template Goes Here-->
       </table>
     </div>
+
     <aside id="houseRules" class="heroThree">
       <h2>The Rules</h2>
       <ul>
@@ -138,6 +202,7 @@
         <li>Is this the last rule?</li>
       </ul>
     </aside>
+
   </section>
 
   <!--ABOUT SECTION-->
