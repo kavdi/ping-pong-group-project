@@ -3,13 +3,39 @@
   width: 80%;
   position: relative;
   z-index: 2;
-  background-color: black;
+  margin-top: 9em;
+  margin-bottom: 9em;
+  border: thin solid lightgray;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
 }
 
-#player-template {
+#player-table {
   margin: auto;
-  width: 80%;
-  position: relative;
-  z-index: 2;
-  background-color: black;
+  width: 100%;
+  font-family: 'Muli', sans-serif;
+  background-color: #e8e8e8;
+  border-collapse: collapse;
+  padding: 1em;
+  
+}
+
+#player-table tr:nth-child(odd) {
+  background-color: #63edff;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#player-table tr:nth-child(even) {
+  background-color: white;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+#player-table tr:hover {
+  color: white;
+  background-color: #fda605;
+}
+
+#player-table td {
+  padding: 1em;
 }
