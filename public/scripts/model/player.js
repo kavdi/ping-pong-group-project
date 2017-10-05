@@ -9,7 +9,7 @@ var app = app || {};
     this.wins = 0,
     this.losses = 0,
     this.games_played = 0,
-    this.rank = 0,
+    this.rank = 11,
     this.rival = null
     // this.last_activity = new Date()  // Stretch Goal
   }
@@ -29,6 +29,11 @@ var app = app || {};
     var html = template(this);
     return html
   }
+//NOTE:can I listen for two urls
+  Player.challengeOptions = function(show){
+    $.get('/currentPlayer', {challenger: app.Player.localUser}).then(show);
+  }
+
   module.Player = Player
 }
 )(app)

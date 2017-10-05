@@ -6,7 +6,7 @@ var app = app || {};
   var challengePong = (callback) => {
     $('.leaderboard').on('click', function(){
       console.log(app.Player.localUser);
-      $.get('/challenge', {challenger: app.Player.localUser, defender:}).then(callback);
+      $.get('/challenge', {challenger: app.Player.localUser/*, defender:*/}).then(callback);
     })
   }
   module.challengePong = challengePong;
