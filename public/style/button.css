@@ -19,3 +19,10 @@
   cursor: pointer;
   border-bottom: 5px solid darkred;
 }
+.aboutSocial {
+  color: black;
+}
+
+.aboutSocial:hover {
+  color: red;
+}
