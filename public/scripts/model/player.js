@@ -6,14 +6,13 @@ var app = app || {};
   function Player(rawData) {
     this.name = rawData.name,
     this.user_id = rawData.player_id,
-    this.wins = 0,
-    this.losses = 0,
-    this.games_played = 0,
-    this.rank = 11,
-    this.rival = null
+    this.wins = rawData.wins,
+    this.losses = rawData.losses,
+    this.games_played = rawData.games_played,
+    this.rank = rawData.rank,
+    this.challenged = rawData.challenged //NOTE: 0 = false / 1 = true
     // this.last_activity = new Date()  // Stretch Goal
   }
-
 
   Player.all = [];
 
@@ -23,6 +22,10 @@ var app = app || {};
       Player.all = JSON.parse(request).map(function(player) {return new Player(player)})
     // }).then(callback, err => console.error(err, 'error'))
     }).then(callback);
+  }
+
+  Player.rankedPlayers = function(){
+    return Player.all.sort((player1, player2)=>player1.rank - player2.rank).slice(0,10);
   }
 
   Player.prototype.toHtml = function(){
