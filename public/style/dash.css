@@ -1,0 +1,41 @@
+.dash{
+  background-color: white;
+  border: thin solid rgb(187, 187, 187);
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 140px;
+  width: 15em;
+  z-index: 10;
+  height: 4em;
+  font-family: 'Muli', sans-serif;
+  background-color: lightgray;
+}
+
+#dash_icon {
+  padding: 0;
+  border-radius: 10px;
+  background-color: white;
+  height: 93%;
+  margin: 1%;
+}
+
+#dash_name, #dash_ranking, #dash_win_loss {
+  margin: 0 0 0 7%;
+}
+
+.dash_stats {
+  /*margin-left: 0.8em;*/
+  margin-top: 0.1em;
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}

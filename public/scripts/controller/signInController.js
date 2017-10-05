@@ -7,6 +7,8 @@ var app = app || {};
     $('#slackButton').show();
     $('#hoseRules').show().siblings().hide();
     $('#about-page').hide();
+    $('.dash').hide();
+    $('.navItems').hide();
   };
   module.signInController = signInController;
 })(app);
