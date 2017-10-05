@@ -37,8 +37,8 @@ APP.get('/slack/auth', (request, response) => {
     body = JSON.parse(body);
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
-        'INSERT INTO player(name, class, player_id) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id]
+        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
@@ -132,7 +132,7 @@ function createPlayerTable() {
       wins INT,
       losses INT,
       games_played INT,
-      rival VARCHAR(250)
+      challenged INT
     );`
   )
     .catch(console.error);
