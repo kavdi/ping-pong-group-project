@@ -10,6 +10,7 @@ var app = app || {};
     $('#leader-board-table').hide();
     $('#player-table').hide();
     $('#about-page').fadeIn(1000);
+    $('.playerContainer').hide();
   };
 
   module.aboutController = aboutController;

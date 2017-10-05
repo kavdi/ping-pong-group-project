@@ -10,6 +10,7 @@ var app = app || {};
     app.Player.localUser = ctx.params.id;
     $('#leader-board-table').fadeIn(1000);
     $('#about-page').hide();
+    $('.playerContainer').hide();
   };
 
   module.homeController = homeController;
