@@ -29,7 +29,7 @@ var app = app || {};
     var html = template(this);
     return html
   }
-
+//NOTE:can I listen for two urls
   Player.challengeOptions = function(show){
     $.get('/currentPlayer', {challenger: app.Player.localUser}).then(show);
   }
