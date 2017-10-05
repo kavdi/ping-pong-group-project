@@ -11,7 +11,7 @@ const SLACK = require('node-slack');
 const REQUEST = require('request');
 const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
-const hook_url = 'https://hooks.slack.com/services/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';
+const hook_url = 'https://hooks.slack.com/services/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';
 const slack = new SLACK(hook_url);
 
 CLIENT.connect();
@@ -59,13 +59,13 @@ APP.get('/api/players', function(req, res){
 })
 
 APP.get('/challenge', function(req, res){
-
+  console.log(req);
   slack.send({
-    text: '<@U7D0NLTDL> challenges you!',
+    text: `<@${req.query.challenger}> has challenged <@${req.query.defender}, step up or be branded a coward!`,
     username: 'The Ref'
   })
-  res.console.log(res);
-
+  .then(() => res.send({success: true}))
+  .catch((err) => res.send({success: false, error: err}))
 })
 
 
