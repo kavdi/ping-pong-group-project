@@ -14,6 +14,5 @@ var app = app || {};
       $('#leader-board-table table').append(leaderBoard.toHtml());
     });
   };
-
-app.LeaderBoard.fetchAll(homeView.populateRankings);
+  app.LeaderBoard.fetchAll(app.homeView.populateRankings);
 })(app);
