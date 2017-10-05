@@ -70,6 +70,67 @@ APP.get('/challenge', function(req, res){
 
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
+
+/* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
+APP.get('/currentPlayer', (request, response) => {
+//NOTE - look into passing objects to this block
+//  function(playerData){
+    var name = playerData['name'];
+    CLIENT.query(
+      `SELECT player_rank FROM player WHERE name=$1;`,
+      [name],
+      function(err,info){
+        console.log("error - player not found");
+      }
+    )
+//}
+});
+
+APP.get('/findChallengers', (request, response) => {
+    var upperLimit = parseInt(playerObj['rank']) + 2;
+
+    CLIENT.query(`SELECT name FROM player WHERE player_rank < $1;`,
+      [upperLimit],
+      function(err, info){
+        console.log("no valid challenges");
+      }
+    )
+
+});
+
+APP.get('/changeRanks', (request, response) =>{
+  let playerOne, playerTwo, whoWon = {};
+
+  var swap = 0;
+
+  if(playerOne.name == whoWon && playerOne.rank > playerTwo.rank){
+    console.log("swap here");
+    swap = playerTwo.rank;
+    playerTwo.rank = playerOne.rank;
+    playerOne.rank = swap;
+  }else if(playerTwo.name == whoWon && playerTwo.rank > playerOne.rank){
+    console.log("swap here");
+    swap = playerOne.rank;
+    playerOne.rank = playerTwo.rank;
+    playerTwo.rank = swap;
+  }
+
+  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+    [playerOne.rank,playerOne.name],
+    function(err, info){
+      console.log("invalid rank change");
+    }
+  );
+
+  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+    [playerTwo.rank, playerTwo.name],
+    function(err, info){
+        console.log("invalid rank change");
+    }
+  );
+
+});
+
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
 function createTable() {
