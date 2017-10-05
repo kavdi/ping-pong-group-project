@@ -8,6 +8,7 @@ var app = app || {};
   aboutController.index = () => {
     $('#slackButton').hide();
     $('#leader-board-table').hide();
+    $('#player-table').hide();
     $('#about-page').fadeIn(1000);
   };
 

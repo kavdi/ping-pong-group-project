@@ -8,11 +8,13 @@ var app = app || {};
   const playerView = {};
 
   //WILL POPULATE LEADERBOARD RANKINGS
-  playerView.populateRankings = function(){
+  playerView.populatePlayers = function(){
     //MORE TO FOLLOW
-    app.LeaderBoard.all.forEach(leaderBoard =>{
-      $('#leader-board-table table').append(leaderBoard.toHtml());
+    app.Player.all.forEach(player =>{
+      console.log(player);
+      $('#player-table').append(player.toHtml());
     });
   };
-  app.LeaderBoard.fetchAll(app.homeView.populateRankings);
+  module.playerView = playerView;
+// app.LeaderBoard.fetchAll(homeView.populatePlayers);
 })(app);

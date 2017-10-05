@@ -37,6 +37,19 @@
     <td>{{class}}</td>
   </tr>
 </script>
+
+<script id="player-template" type="text/x-handlebars-template">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{class}}</td>
+    <td>{{player_rank}}</td>
+    <td>{{wins}}</td>
+    <td>{{losses}}</td>
+    <td>{{games_played}}</td>
+    <td>{{rival}}</td>
+  </tr>
+</script>
+
 <body>
   <!--NAVBAR SECTION - NEED VIEW URLS -->
   <nav>
@@ -84,6 +97,11 @@
       <img id="slackIcon" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png" alt=""/><p>Sign in with <em>Slack</em></p>
     </div>
   </a>
+
+  <!-- PLAYERS TEMPLATE RENDER -->
+
+  <table id="player-table"></table>
+
   <!-- WILL BE HANDLEBAR TEMPLATES--->
   <section id="leader-board-table" data-content="leaders">
     <div class="tableContainer">

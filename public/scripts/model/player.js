@@ -16,12 +16,19 @@ var app = app || {};
 
   Player.all = [];
 
-  Player.loadPlayers = function(){
+  Player.loadPlayers = function(callback){
     $.get('/api/players', function(request, response) {
-      console.log(request);
-      Player.all = request.map(function(player) {return new Player(player)})
+      console.log(typeof request);
+      Player.all = JSON.parse(request).map(function(player) {return new Player(player)})
     // }).then(callback, err => console.error(err, 'error'))
-    })}
+    }).then(callback);
+  }
+
+  Player.prototype.toHtml = function(){
+    let template = Handlebars.compile($('#player-template').text());
+    var html = template(this);
+    return html
+  }
   module.Player = Player
 }
 )(app)

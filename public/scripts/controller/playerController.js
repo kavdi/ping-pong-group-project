@@ -6,7 +6,8 @@ var app = app || {};
   playerController.index = () => {
     $('#leader-board-table').hide();
     $('#about-page').hide();
-    app.Player.loadPlayers()
+    $('#player-table').show();
+    app.Player.loadPlayers(app.playerView.populatePlayers);
   };
 
   module.playerController = playerController;
