@@ -70,7 +70,7 @@ APP.get('/challenge', function(req, res){
 })
 
 
-//TODO: fix the code! ask if we can use same initiation url
+//TODO:ask if we can use same initiation url
 /* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
 APP.get('/currentPlayer', (request, response) => {
 //NOTE - look into passing objects to this block
@@ -101,7 +101,7 @@ APP.get('/findChallengers', (request, response) => {
 
 });
 */
-
+//NOTE: apply this code after above code is good.
 // APP.get('/changeRanks', (request, response) =>{
 //   let playerOne, playerTwo, whoWon = {};
 //
