@@ -123,6 +123,35 @@ APP.get('/challenge', (req, res) => {
     .catch((err) => res.send({success: false, error: err}))
 })
 
+APP.get('/vote', (request, response) => {
+  let match_id = CLIENT.query(`SELECT match_id
+                               FROM player_match
+                               WHERE player_id = $1
+                                 AND result IS null;`,
+    [request.query.userId]
+  )
+  let player_match_id = CLIENT.query(`SELECT id
+                                      FROM player_match
+                                      WHERE player_id = $1
+                                        AND result IS null;`,
+    [request.query.userId])
+  CLIENT.query(`
+    UPDATE player_match
+    SET result = $1
+    WHERE id = $2;`,
+    [request.query.winner, player_match_id]
+  ).then(
+    CLIENT.query(`
+      SELECT *
+      FROM player_match
+      WHERE match_id = $1;`,
+      [match_id]
+    )
+  )
+    .then(function(data){
+      response.send(data.rows);
+    })
+})
 
 
 /* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
