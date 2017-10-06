@@ -39,7 +39,7 @@ APP.get('/slack/auth', (request, response) => {
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
         'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null]
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null, null]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
@@ -88,6 +88,36 @@ APP.get('/challenge', (req, res) => {
         SET opp_id = $1
         WHERE player_id = $2;`,
         [req.query.defender, req.query.challenger]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO match (winner, player1, player2)
+        VALUES
+        (null, $1, $2);`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null) , null);`,
+        [req.query.challenger, req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null), null);`,
+        [req.query.defender, req.query.challenger, req.query.defender]
       )
     )
     .catch((err) => res.send({success: false, error: err}))
@@ -162,7 +192,9 @@ function createMatchTable(){
     CREATE TABLE IF NOT EXISTS
     match (
       id SERIAL PRIMARY KEY,
-      winner INT
+      winner INT,
+      player1 VARCHAR(250) REFERENCES player(player_id),
+      player2 VARCHAR(250) REFERENCES player(player_id)
     );`
   );
 }
@@ -170,7 +202,7 @@ function createMatchTable(){
 function createPlayerMatchTable() {
   CLIENT.query(`CREATE TABLE IF NOT EXISTS
       player_match(
-      player_id INT REFERENCES player(id),
+      player_id VARCHAR(250) REFERENCES player(player_id),
       match_id INT REFERENCES match(id),
       result VARCHAR(50)
     );`
