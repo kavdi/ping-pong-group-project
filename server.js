@@ -170,20 +170,20 @@ APP.get('/findChallengers', (request, response) => {
   })
 });
 
-APP.put('/changeRanks', (request, response) => {
-  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-    [playerOne.rank,playerOne.name],
-    function(err, info){
-      console.log('invalid rank change');
-    }
-  );
-  CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-    [playerTwo.rank, playerTwo.name],
-    function(err, info){
-      console.log("invalid rank change");
-    }
-  );
-});
+// APP.put('/changeRanks', (request, response) => {
+//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+//     [playerOne.rank,playerOne.name],
+//     function(err, info){
+//       console.log('invalid rank change');
+//     }
+//   );
+//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
+//     [playerTwo.rank, playerTwo.name],
+//     function(err, info){
+//       console.log("invalid rank change");
+//     }
+//   );
+// });
 
 APP.get('/api/player', (request, response) => {
   CLIENT.query(
