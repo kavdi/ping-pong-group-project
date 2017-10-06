@@ -1,37 +1,49 @@
-// NOTE:Doesn't look like we need this file.
 'use strict';
+
 var app = app || {};
 
-(function(module) {
-  function LeaderBoard(slackDataObj){
-    Object.keys(slackDataObj).forEach(key => this[key] = slackDataObj[key]);
+(function(module){
+  var swapRank = (callback) => {
+    $('.dash').off('click').on('click', '.dash_a', (playerOne, playerTwo) => {
+      let swap = 0;
+
+      swap = playerTwo.rank;
+      playerTwo.rank = playerOne.rank;
+      playerOne.rank = swap;
+
+      //put request
+      $.ajax({
+        url: '/changeRanks',
+        method: 'PUT',
+        data: {
+          playerOne: playerOne,
+          playerTwo: playerTwo,
+        }
+      });
+    })
   }
 
-  LeaderBoard.all = [];
+  module.swapRank = Rank;
+})
 
-  LeaderBoard.prototype.toHtml = function(){
-    let template = Handlebars.compile($('#leader-board-template').text());
-    var html = template(this);
 
-    return html;
-  };
 
-  LeaderBoard.loadAll = function(rows){
-    //populate Leaderboard.all with player objects
-    LeaderBoard.all = rows.map(function(players){
-      return new LeaderBoard (players);
-    });
-  };
-
-  LeaderBoard.fetchAll = function(callback){
-    $.get('/leaders')
-    .then(
-      function(results){
-        LeaderBoard.loadAll(results);
-        callback();
-      }
-    );
-  };
-
-  module.LeaderBoard = LeaderBoard;
-})(app);
+// assume winner is known
+// Player.swapRank = function(playerOne,playerTwo){
+//   let swap = 0;
+//
+//   swap = playerTwo.rank;
+//   playerTwo.rank = playerOne.rank;
+//   playerOne.rank = swap;
+//
+//   //put request
+//   $.ajax({
+//     url: '/changeRanks',
+//     method: 'PUT',
+//     data: {
+//       playerOne: playerOne,
+//       playerTwo: playerTwo,
+//     }
+//   });
+//
+// }
