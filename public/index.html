@@ -48,11 +48,15 @@
 <script id="player-template" type="text/x-handlebars-template">
   <tr>
     <td>{{name}}</td>
-    <td>{{class}}</td>
     <td>{{rank}}</td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{games_played}}</td>
+    <td>
+      <a class="challengeButton" >
+        <div class="buttonStyle" player-id="{{user_id}}">Pong Me</div>
+      <a>
+    </td>
   </tr>
 </script>
 
@@ -134,12 +138,12 @@
   <div class="playerContainer">
     <table id="player-table">
       <h3>All Players! Pong them for a friendly match (does not affect leaderboard rankings)</h3>
-      <tr>
+      <tr class="header">
         <th>Name</th>
+        <th>Rank</th>
         <th>Wins</th>
         <th>Losses</th>
         <th>Games Played</th>
-        <th></th>
         <th>Challenge</th>
       </tr>
     </table>
