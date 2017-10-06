@@ -25,11 +25,6 @@ createPlayerTable();
 createMatchTable();
 createPlayerMatchTable();
 
-// APP.get('/leaders', (request, response) =>{
-//   CLIENT.query(`SELECT * FROM player ORDER BY rank ASC`)
-//   .then(result =>response.send(result.rows))
-// });
-
 APP.get('/slack/auth', (request, response) => {
   console.log(request.query.code);
   let code = request.query.code;
