@@ -4,9 +4,10 @@ var app = app || {};
 
 (function(module){
   var challengePong = (callback) => {
-    $('.leaderboard').on('click', function(){
+    $('#leaderTable').off('click').on('click', '.challengeButton', function(){
       console.log(app.Player.localUser);
-      $.get('/challenge', {challenger: app.Player.localUser/*, defender:*/}).then(callback);
+      console.log($(this).attr('player-id'))
+      $.get('/challenge', {challenger: app.Player.localUser, defender: $(this).attr('player-id')}).then(callback);
     })
   }
   module.challengePong = challengePong;

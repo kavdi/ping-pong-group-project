@@ -34,6 +34,12 @@ var app = app || {};
     return html
   }
 
+  Player.prototype.rankedToHtml = function(){
+    let template = Handlebars.compile($('#leader-board-template').text());
+    var html = template(this);
+    return html
+  }
+
   //assume winner is known
   Player.swapRank = function(playerOneData,playerTwoData){
     let swap = 0;
