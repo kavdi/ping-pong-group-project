@@ -60,15 +60,22 @@ APP.get('/api/players', function(req, res){
   )
 })
 
-APP.get('/challenge', function(req, res){
+APP.get('/challenge', (req, res) => {
   console.log(req);
   slack.send({
-    //${req.query.defender}> add this for second person.
     text: `<@${req.query.challenger}> has challenged <@${req.query.defender}>, step up or be branded a coward!`,
     username: 'The Ref'
   })
   .then(() => res.send({success: true}))
+  .then(
+    CLIENT.query(`
+      UPDATE player
+      SET challenged = 1
+      WHERE player.player_id IN ($1, $2);`,
+      [req.query.challenger, req.query.defender])
+  )
   .catch((err) => res.send({success: false, error: err}))
+
 })
 
 
