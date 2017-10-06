@@ -6,8 +6,8 @@ var app = app || {};
   const playerView = {};
 
   playerView.populatePlayers = function(){
+    $('#player-table').empty();
     app.Player.all.forEach(player =>{
-      $('#player-table').empty();
       $('#player-table').append(player.toHtml());
     });
   };
