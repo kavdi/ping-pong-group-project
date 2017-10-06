@@ -40,26 +40,6 @@ var app = app || {};
     return html
   }
 
-  //assume winner is known
-  Player.swapRank = function(playerOneData,playerTwoData){
-    let swap = 0;
-
-    swap = playerTwoData.rank;
-    playerTwoData.rank = playerOneData.rank;
-    playerOneData.rank = swap;
-
-    //put request
-    $.ajax({
-      url: '/changeRanks',
-      method: 'PUT',
-      data: {
-        playerOne: playerOneData,
-        playerTwo: playerTwoData,
-      }
-    });
-
-  }
-
   module.Player = Player
 }
 )(app)
