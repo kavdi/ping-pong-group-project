@@ -23,6 +23,7 @@ APP.use(EX.static('./public'));
 
 createPlayerTable();
 createMatchTable();
+createPlayerMatchTable();
 
 // APP.get('/leaders', (request, response) =>{
 //   CLIENT.query(`SELECT * FROM player ORDER BY rank ASC`)
@@ -107,19 +108,6 @@ APP.get('*', (request, response) => response.sendFile('index.html', {root: './pu
 
 APP.listen(PORT, () => console.log(`port ${PORT}`));
 
-function createMatchTable(){
-  CLIENT.query(`
-    CREATE TABLE IF NOT EXISTS
-    match (
-      id SERIAL PRIMARY KEY,
-      playerOne VARCHAR (250) NOT NULL,
-      playerTwo VARCHAR (250) NOT NULL,
-      winner VARCHAR (250) NOT NULL,
-      loser VARCHAR (250) NOT NULL
-    )
-    `);
-}
-
 function createPlayerTable() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
@@ -136,4 +124,24 @@ function createPlayerTable() {
     );`
   )
     .catch(console.error);
+}
+
+function createMatchTable(){
+  CLIENT.query(`
+    CREATE TABLE IF NOT EXISTS
+    match (
+      id SERIAL PRIMARY KEY,
+      winner INT
+    );`
+  );
+}
+
+function createPlayerMatchTable() {
+  CLIENT.query(`CREATE TABLE IF NOT EXISTS
+      player_match(
+      player_id INT REFERENCES player(id),
+      match_id INT REFERENCES match(id),
+      result VARCHAR(50)
+    );`
+  )
 }
