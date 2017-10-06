@@ -31,8 +31,8 @@ APP.get('/slack/auth', (request, response) => {
     body = JSON.parse(body);
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
-        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null, null]
+        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged, opp_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (player_id) DO NOTHING;',
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
