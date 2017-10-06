@@ -39,7 +39,7 @@ APP.get('/slack/auth', (request, response) => {
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
         'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged) VALUES($1, $2, $3) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0]
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
@@ -66,16 +66,31 @@ APP.get('/challenge', (req, res) => {
     text: `<@${req.query.challenger}> has challenged <@${req.query.defender}>, step up or be branded a coward!`,
     username: 'The Ref'
   })
-  .then(() => res.send({success: true}))
-  .then(
-    CLIENT.query(`
+    .then(() => res.send({success: true}))
+    .then(
+      CLIENT.query(`
       UPDATE player
       SET challenged = 1
       WHERE player.player_id IN ($1, $2);`,
-      [req.query.challenger, req.query.defender])
-  )
-  .catch((err) => res.send({success: false, error: err}))
-
+        [req.query.challenger, req.query.defender])
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.defender, req.query.challenger]
+      )
+    )
+    .catch((err) => res.send({success: false, error: err}))
 })
 
 
@@ -98,18 +113,33 @@ APP.get('/findChallengers', (request, response) => {
 
 APP.put('/changeRanks', (request, response) => {
   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-       [playerOne.rank,playerOne.name],
-       function(err, info){
-         console.log("invalid rank change");
-       }
-     );
+    [playerOne.rank,playerOne.name],
+    function(err, info){
+      console.log('invalid rank change');
+    }
+  );
   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-        [playerTwo.rank, playerTwo.name],
-        function(err, info){
-            console.log("invalid rank change");
-        }
-      );
+    [playerTwo.rank, playerTwo.name],
+    function(err, info){
+      console.log("invalid rank change");
+    }
+  );
 });
+
+APP.get('/api/player', (request, response) => {
+  let oppName = CLIENT.query(
+    `SELECT name
+     FROM player
+     WHERE id = (SELECT opp_id
+                 FROM player
+                 WHERE player_id = $1)
+    `)
+  CLIENT.query(
+    `SELECT (name, player_id, rank, wins, losses, challenged, opp_id)
+     FROM player
+     WHERE player_id = 'AAAAAAAAA';`) //, [request.query.userId])
+    .then(function(data) {response.send(data.rows)});
+})
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 
@@ -127,7 +157,8 @@ function createPlayerTable() {
       wins INT,
       losses INT,
       games_played INT,
-      challenged INT
+      challenged INT,
+      opp_id VARCHAR(250)
     );`
   )
     .catch(console.error);
