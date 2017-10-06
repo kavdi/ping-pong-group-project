@@ -7,7 +7,6 @@ const PARSER = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const APP = EX();
 const SLACK = require('node-slack');
-// const REQUEST_PROXY = require('express-request-proxy');
 const REQUEST = require('request');
 const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
@@ -29,7 +28,6 @@ APP.get('/slack/auth', (request, response) => {
   console.log(request.query.code);
   let code = request.query.code;
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, res, body){
-    console.log(body);
     body = JSON.parse(body);
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
@@ -49,14 +47,12 @@ APP.get('/api/players', function(req, res){
   CLIENT.query(
     `SELECT * FROM player;`).then(
     function(data){
-      // console.log(data.rows)
       res.send(JSON.stringify(data.rows))
     }
   )
 })
 
 APP.get('/challenge', (req, res) => {
-  console.log(req);
   slack.send({
     text: `<@${req.query.challenger}> has challenged <@${req.query.defender}>, step up or be branded a coward!`,
     username: 'The Ref'
@@ -119,37 +115,33 @@ APP.get('/challenge', (req, res) => {
 })
 
 APP.get('/vote', (request, response) => {
-  let match_id = CLIENT.query(`SELECT match_id
-                               FROM player_match
-                               WHERE player_id = $1
-                                 AND result IS null;`,
+  CLIENT.query(`SELECT match_id
+                FROM player_match
+                WHERE player_id = $1
+                 AND result IS null;`,
     [request.query.userId]
-  )
-  let player_match_id = CLIENT.query(`SELECT id
-                                      FROM player_match
-                                      WHERE player_id = $1
-                                        AND result IS null;`,
-    [request.query.userId])
-  CLIENT.query(`
-    UPDATE player_match
-    SET result = $1
-    WHERE id = $2;`,
-    [request.query.winner, player_match_id]
-  ).then(
+  ).then((result) => {
+    let match_id = result.rows[0].match_id;
     CLIENT.query(`
-      SELECT *
-      FROM player_match
-      WHERE match_id = $1;`,
-      [match_id]
-    )
-  )
-    .then(function(data){
-      response.send(data.rows);
+      UPDATE player_match
+      SET result = $1
+      WHERE player_id = $2
+        AND result IS null;`,
+      [request.query.winner, request.query.userId]
+    ).then(() => {
+      CLIENT.query(`
+        SELECT *
+        FROM player_match
+        WHERE match_id = $1;`,
+        [match_id]
+      ).then(function(data){
+        console.log(data.rows);
+        response.send(data.rows);
+      })
     })
+  })
 })
 
-
-/* POPULATE CHALLENGER INFORMATION --> MORE TO FOLLOW*/
 APP.get('/findChallengers', (request, response) => {
 
   CLIENT.query(
@@ -165,20 +157,35 @@ APP.get('/findChallengers', (request, response) => {
   })
 });
 
-// APP.put('/changeRanks', (request, response) => {
-//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-//     [playerOne.rank,playerOne.name],
-//     function(err, info){
-//       console.log('invalid rank change');
-//     }
-//   );
-//   CLIENT.query(`UPDATE player SET rank=$1 WHERE name = $2;`,
-//     [playerTwo.rank, playerTwo.name],
-//     function(err, info){
-//       console.log("invalid rank change");
-//     }
-//   );
-// });
+APP.put('/changeRanks', (request, response) => {
+  CLIENT.query(`UPDATE player SET rank=$1 WHERE player_id = $2;`,
+    [request.body.playerOne.rank, request.body.playerOne.user_id])
+    .catch(console.error)
+    .then(()=> {
+      CLIENT.query(`UPDATE player SET rank=$1 WHERE player_id = $2;`,
+        [request.body.playerTwo.rank, request.body.playerTwo.user_id])
+        .then(() => response.send({success: true}))
+        .catch(console.error)
+    })
+
+});
+
+APP.put('/updateMatch', (request, response) => {
+  CLIENT.query(`
+    UPDATE match
+    SET winner = $1
+    WHERE id = $2;
+  `,[request.body.winner, request.body.match_id])
+  .then(()=> {
+    CLIENT.query(`
+      UPDATE player
+      SET challenged = 0, opp_id = null
+      WHERE player_id = $1 OR player_id = $2;
+      `)
+  })
+  .then(() => response.send({success: true}))
+  .catch(console.error)
+})
 
 APP.get('/api/player', (request, response) => {
   CLIENT.query(
@@ -216,7 +223,7 @@ function createMatchTable(){
     CREATE TABLE IF NOT EXISTS
     match (
       id SERIAL PRIMARY KEY,
-      winner INT,
+      winner VARCHAR(250) REFERENCES player(player_id),
       player1 VARCHAR(250) REFERENCES player(player_id),
       player2 VARCHAR(250) REFERENCES player(player_id)
     );`

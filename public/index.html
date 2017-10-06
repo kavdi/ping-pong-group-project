@@ -38,8 +38,8 @@
     <td>{{rank}}</td>
     <td>{{name}}</td>
     <td>
-      <a class="challengeButton" player-id="{{user_id}}">
-        <div class="buttonStyle">Challenge</div>
+      <a class="challengeButton" >
+        <div class="buttonStyle" player-id="{{user_id}}">Challenge</div>
       <a>
     </td>
   </tr>
@@ -115,11 +115,11 @@
       <hr id="dash_hr">
       <p id='dash_select'>Select the winner of the match.</p>
       <div id="dash_buttons">
-        <a class="dash_a" id="local_user_dash_button" player-id="">
-          <div id="dash_you_button" class="dash_buttonStyle">YOU</div>
+        <a class="dash_a" id="local_user_dash_button">
+          <div id="dash_you_button" class="dash_buttonStyle" player-id="">YOU</div>
         </a>
-        <a class="dash_a" id="other_user_dash_button" player-id="">
-          <div id="dash_them_button" class="dash_buttonStyle">THEM</div>
+        <a class="dash_a" id="other_user_dash_button">
+          <div id="dash_them_button" class="dash_buttonStyle" player-id="">THEM</div>
         </a>
       </div>
         <p id="dash_sub">Both players need to agree for match to be posted.</p>
@@ -252,8 +252,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/scripts/handlebars.js"></script>
   <script src="/vendor/scripts/page.js"></script>
-
   <script src="/scripts/model/player.js"></script>
+  <script src="/scripts/model/app.js"></script>
   <script src="/scripts/model/challenger.js"></script>
   <script src="/scripts/model/challengePong.js"></script>
   <script src="/scripts/view/challengerView.js"></script>
