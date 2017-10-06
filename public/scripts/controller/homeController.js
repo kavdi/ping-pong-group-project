@@ -8,9 +8,13 @@ var app = app || {};
     $('#player-table').hide();
     $('.navItems a:first').attr('href', `/user/${ctx.params.id}`)
     app.Player.localUser = ctx.params.id;
+    app.challengePong();
+    if (app.Player.all.length === 0)app.Player.loadPlayers(app.leaderboardView.populatePlayers);
+    else app.leaderboardView.populatePlayers();
     $('#leader-board-table').fadeIn(1000);
     $('#about-page').hide();
     $('.playerContainer').hide();
+    $('.subTitle').html(`The "official" ping-pong leaderboard. Challenge your friends with <i class="fa fa-slack fa-2" aria-hidden="true"></i> Slack!`);
   };
 
   module.homeController = homeController;

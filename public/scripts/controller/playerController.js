@@ -7,8 +7,9 @@ var app = app || {};
     $('#leader-board-table').hide();
     $('#about-page').hide();
     $('#player-table').show();
-    $('.playerContainer').show();
-    app.Player.loadPlayers(app.playerView.populatePlayers);
+
+    if (app.Player.all.length === 0)app.Player.loadPlayers(app.playerView.populatePlayers);
+    else app.playerView.populatePlayers();
   };
 
   module.playerController = playerController;
