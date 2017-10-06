@@ -2,7 +2,7 @@
   background-color: white;
   border: thin solid rgb(187, 187, 187);
   border-radius: 10px;
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 140px;
   width: 15em;
