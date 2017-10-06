@@ -24,10 +24,10 @@ APP.use(EX.static('./public'));
 createPlayerTable();
 createMatchTable();
 
-APP.get('/leaders', (request, response) =>{
-  CLIENT.query(`SELECT * FROM player ORDER BY rank ASC`)
-  .then(result =>response.send(result.rows))
-});
+// APP.get('/leaders', (request, response) =>{
+//   CLIENT.query(`SELECT * FROM player ORDER BY rank ASC`)
+//   .then(result =>response.send(result.rows))
+// });
 
 APP.get('/slack/auth', (request, response) => {
   console.log(request.query.code);
@@ -63,7 +63,7 @@ APP.get('/challenge', function(req, res){
   console.log(req);
   slack.send({
     //${req.query.defender}> add this for second person.
-    text: `<@${req.query.challenger}> has challenged <@U7D0NLTDL>, step up or be branded a coward!`,
+    text: `<@${req.query.challenger}> has challenged <@${req.query.defender}>, step up or be branded a coward!`,
     username: 'The Ref'
   })
   .then(() => res.send({success: true}))

@@ -34,10 +34,10 @@
 <!---HANDLEBARS TEMPLATE-->
 <script id="leader-board-template" type="text/x-handlebars-template">
   <tr>
-    <td>{{playerrank}}</td>
+    <td>{{rank}}</td>
     <td>{{name}}</td>
     <td>
-      <a class="challengeButton" player-id="{{player_id}}">
+      <a class="challengeButton" player-id="{{user_id}}">
         <div class="buttonStyle">Challenge</div>
       <a>
     </td>
@@ -48,7 +48,7 @@
   <tr>
     <td>{{name}}</td>
     <td>{{class}}</td>
-    <td>{{player_rank}}</td>
+    <td>{{rank}}</td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{games_played}}</td>
@@ -140,64 +140,6 @@
           <th>Rank</th>
           <th>Name</th>
           <th>Challenge</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Kavdi</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>A Fancy Dog</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Fart Face</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>The Crusher</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Ganghis Pong</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Pinky Stinker</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>Flabby Babs</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>Sumsum McGee</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>Jane Blow</td>
-          <td>
-            <a class="challengeButton" player-id="">
-              <div class="buttonStyle">Pong Me!</div>
-            <a>
-          </td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>Joe Shmoe</td>
-          <td>
-            <a class="challengeButton" player-id="">
-              <div class="buttonStyle">Pong Me!</div>
-            <a>
-          </td>
         </tr>
         <!-- Template Goes Here-->
       </table>
@@ -300,10 +242,11 @@
   <script src="/vendor/scripts/handlebars.js"></script>
   <script src="/vendor/scripts/page.js"></script>
 
-  <script src="/scripts/model/app.js"></script>
   <script src="/scripts/model/player.js"></script>
+  <script src="/scripts/model/challenger.js"></script>
   <script src="/scripts/model/challengePong.js"></script>
-  <script src="/scripts/view/homeView.js"></script>
+  <script src="/scripts/view/challengerView.js"></script>
+  <script src="/scripts/view/leaderboardView.js"></script>
   <script src="/scripts/view/playerView.js"></script>
   <script src="/scripts/controller/playerController.js"></script>
   <script src="/scripts/controller/signInController.js" type="text/javascript"></script>
