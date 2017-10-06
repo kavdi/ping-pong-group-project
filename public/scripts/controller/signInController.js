@@ -9,6 +9,7 @@ var app = app || {};
     $('#about-page').hide();
     $('.dash').hide();
     $('.navItems').hide();
+    $('.playerContainer').hide();
   };
   module.signInController = signInController;
 })(app);
