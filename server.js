@@ -127,17 +127,10 @@ APP.put('/changeRanks', (request, response) => {
 });
 
 APP.get('/api/player', (request, response) => {
-  let oppName = CLIENT.query(
-    `SELECT name
-     FROM player
-     WHERE id = (SELECT opp_id
-                 FROM player
-                 WHERE player_id = $1)
-    `)
   CLIENT.query(
-    `SELECT (name, player_id, rank, wins, losses, challenged, opp_id)
+    `SELECT *
      FROM player
-     WHERE player_id = 'AAAAAAAAA';`) //, [request.query.userId])
+     WHERE player_id = $1;`, [request.query.userId])
     .then(function(data) {response.send(data.rows)});
 })
 
