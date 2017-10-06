@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="/style/rules.css" type="text/css"/>
   <link rel="stylesheet" href="/style/dash.css" type="text/css"/>
   <link rel="stylesheet" href="/style/button.css" type="text/css"/>
+  <link rel="stylesheet" href="/style/player.css" type="text/css"/>
 
   <!-- F O N T S -->
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -128,7 +129,16 @@
 
   <!-- PLAYERS TEMPLATE RENDER -->
   <div class="playerContainer">
-    <table id="player-table"></table>
+    <table id="player-table">
+      <h3>All Players! Pong them for a friendly match (does not affect leaderboard rankings)</h3>
+      <tr>
+        <th>Name</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Games Played</th>
+        <th>Challenge</th>
+      </tr>
+    </table>
   </div>
   <!-- WILL BE HANDLEBAR TEMPLATES--->
   <section id="leader-board-table" data-content="leaders">
@@ -183,14 +193,13 @@
     <section class="aboutContainer">
       <div class="aboutMe">
         <div class="AboutBio">
-          <img class="floatRight" src="http://via.placeholder.com/175x175" />
-          <h3>David</h3>
+          <img class="floatRight" src="/img/david.jpeg" width="175"/>
+          <h3>David Franklin</h3>
           <div class="social">
-            <i class="fa fa-github-alt fa-2x" aria-hidden="true"></i>
-            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+            <a href="https://github.com/dave5801" target="_blank"><i class="aboutSocial fa fa-github-alt fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/david-franklin-6063bba2/" target="_blank"><i class="aboutSocial fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Developer, Writer, and Veteran - My background is Java, Python, and Javascript. I am passionate about Projects and emerging trends in Science and Technology. I am currently based in the great city of Seattle.</p>
         </div>
       </div>
     </section>
@@ -221,7 +230,7 @@
             <a href="https://angel.co/shayne-smith-4?al_content=view+your+profile&al_source=transaction_feed%2Fnetwork_sidebar" target="_blank"><i class="aboutSocial fa fa-angellist fa-2x" aria-hidden="true"></i></a>
             <a href="mailto:shaynereedsmith@yahoo.com"><i class="aboutSocial fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
           </div>
-          <p>Husband and father. Originally from the dry-side of Washington State, Shayne has always had an eye for design. Focusing on frontend, UX/UI, and visual storytelling, Shayne strives to make each project he works on more visually amazing than the last. Also, he illustrates. If you like what you see here, go ahead and hit him up!</p>
+          <p>Husband, father, human-person. Originally from the dry-side of Washington State, Shayne has always had an eye for design. Focusing on frontend, UX/UI, and visual storytelling, Shayne strives to make each project he works on more visually amazing than the last. Also, he illustrates. If you like what you see here, go ahead and hit him up!</p>
         </div>
       </div>
     </section>

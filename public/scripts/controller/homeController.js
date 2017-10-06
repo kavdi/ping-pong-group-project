@@ -13,6 +13,8 @@ var app = app || {};
     else app.leaderboardView.populatePlayers();
     $('#leader-board-table').fadeIn(1000);
     $('#about-page').hide();
+    $('.playerContainer').hide();
+    $('.subTitle').html(`The "official" ping-pong leaderboard. Challenge your friends with <i class="fa fa-slack fa-2" aria-hidden="true"></i> Slack!`);
   };
 
   module.homeController = homeController;
