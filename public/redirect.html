@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pong Me</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- S T Y L E S H E E T S -->
+
+    <link rel="stylesheet" href="/style/redirect.css" type="text/css"/>
+
+    <!-- F O N T S -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sigmar+One" rel="stylesheet">
+
+    <!-- L I B S -->
+    <script src="https://use.fontawesome.com/021f7366b5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- F A V I C O N -->
+    <link href="https://rlv.zcache.com/art_of_color_palette_ping_pong_paddle-r4de3e6543cb6417fb6fc1419449713b1_zvmtd_324.jpg?rlvnet=1" rel="icon" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="redirectDiv">
+
+      <h4>Oops!</h4>
+      <img src="/img/redirect.gif" alt="">
+      <p>You must be signed in with the <em>pong-me</em> Slack channel to use Pong Me.</p>
+      <p>If you are part of the <em>pong-me</em> Slack channel, please sign in with that account. If not, please <a href="https://join.slack.com/t/pong-me/shared_invite/enQtMjUwMTg5NTI0MjI4LThjNTJkMzY4NjJjNDBhYjA5OTQ3NDFhYWU4MjkxZWI2Y2RiZjdkMDc0MzY2N2IwOTg1NWM5Mjc3YTA1MTg1M2U">click here</a> to sign up and start playing!</p>
+
+      <a href="/">Home</a>
+      <a href="/player-page">Players</a>
+      <a href="/about-page">About</a>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/vendor/scripts/handlebars.js"></script>
+    <script src="/vendor/scripts/page.js"></script>
+
+    <script src="/scripts/model/app.js"></script>
+    <script src="/scripts/model/player.js"></script>
+    <script src="/scripts/model/challengePong.js"></script>
+    <script src="/scripts/view/homeView.js"></script>
+    <script src="/scripts/view/playerView.js"></script>
+    <script src="/scripts/controller/playerController.js"></script>
+    <script src="/scripts/controller/signInController.js" type="text/javascript"></script>
+    <script src="/scripts/controller/homeController.js"></script>
+    <script src="/scripts/controller/aboutController.js"></script>
+    <script src="/scripts/controller/routes.js"></script>
+
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/rellax.js"></script>
+    <script>
+      var rellax = new Rellax('.rellax', {
+        callback: function(position) {
+        }
+      });
+    </script>
+  </body>
+</html>
