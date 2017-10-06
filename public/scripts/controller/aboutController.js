@@ -6,6 +6,7 @@ var app = app || {};
   const aboutController = {};
 
   aboutController.index = () => {
+    app.dashHandler.loadPlayer()
     $('#slackButton').hide();
     $('#leader-board-table').hide();
     $('#player-table').hide();

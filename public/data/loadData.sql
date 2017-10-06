@@ -6,7 +6,7 @@ VALUES
 ('Nate','this class','DDDDDDDDD',4,7,7,14,0, null),
 ('Shayne','this class','EEEEEEEEE',5,10,9,19,0, null),
 ('Paul','this class','FFFFFFFFF',6,10,9,19,0, null),
-('Pam','this class','GGGGGGGGGG',7,10,9,19,0, null),
+('Pam','this class','GGGGGGGGG',7,10,9,19,0, null),
 ('Mike','this class','HHHHHHHHH',8,10,9,19,0, null),
 ('David','this class','IIIIIIIII',9,10,9,19,0, null),
 ('Nick','this class','JJJJJJJJJ',10,10,9,19,0, null),
