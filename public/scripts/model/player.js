@@ -10,8 +10,8 @@ var app = app || {};
     this.losses = rawData.losses,
     this.games_played = rawData.games_played,
     this.rank = rawData.rank,
-    this.challenged = rawData.challenged //NOTE: 0 = false / 1 = true
-    // this.last_activity = new Date()  // Stretch Goal
+    this.challenged = rawData.challenged, //NOTE: 0 = false / 1 = true
+    this.opp_id = rawData.opp_id
   }
 
   Player.all = [];

@@ -4,21 +4,27 @@ var app = app || {};
 
 (function(module){
   const dashHandler = {};
-  dashHandler.loadPlayer = function(callback) {
-    $.get(`/api/player`, {users_id: app.Player.localUser}, function(req, res){
-    }).then(callback)
-  };
 
   dashHandler.loadDash = function(userObj){
     $('#dash_name').text(userObj.name);
     $('#dash_wins').text(userObj.wins);
     $('#dash_loss').text(userObj.losses);
     $('#dash_ranking').text(userObj.rank === 11 ? 'Unranked' : userObj.rank);
-    $('#dash_you_button').text(userObj.name);
-    $('#dash_them_button').text(userObj.opponent);
+    // $('#dash_you_button').text(userObj.name);
+    // $('#dash_them_button').text(userObj.opponent);
     $('#local_user_dash_button').attr('player-id', userObj.player_id);
     $('#other_user_dash_button').attr('player-id', userObj.opp_id);
+    if(userObj.challenged === 1){
+      $('.challengeButton').hide();
+      $('#dash_results').show();
+    }
   }
+
+  dashHandler.loadPlayer = function(callback) {
+    $.get(`/api/player`, {userId: app.Player.localUser})
+      .then(callback)
+  };
+
   module.dashHandler = dashHandler;
 })(app)
 
@@ -68,3 +74,5 @@ var app = app || {};
 //        ON matches.id
 //          = play_match.match_id
 //     WHERE play_match.players_id = 1 AND matches.winner = null;
+
+// name, player_id, rank, wins, losses, challenged, opp_id)
