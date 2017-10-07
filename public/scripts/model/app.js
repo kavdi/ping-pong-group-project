@@ -5,7 +5,6 @@ var app = app || {};
 (function(module){
   var swapRank = (callback) => {
     $('.dash').off('click').on('click', '.dash_a div', (event) => {
-      console.log(event.target.getAttribute('player-id'));
       $.get('/vote', {userId: app.Player.localUser, winner: event.target.getAttribute('player-id')})
       .then(rows => {
         if(rows.map(ele => ele.result).includes(null)){
@@ -31,8 +30,6 @@ var app = app || {};
              let them = app.Player.all.find((player)=> player.user_id === themId )
              let higherRank = me.rank < them.rank ? me:them;
              let winner = app.Player.all.find((player)=> player.user_id === rows[0].result);
-             console.log(me);
-             console.log(them);
              if (higherRank !== winner){
                let temp = me.rank;
                me.rank = them.rank;

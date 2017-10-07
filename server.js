@@ -25,7 +25,6 @@ createMatchTable();
 createPlayerMatchTable();
 
 APP.get('/slack/auth', (request, response) => {
-  console.log(request.query.code);
   let code = request.query.code;
   REQUEST(`https://slack.com/api/oauth.access?client_id=${process.env.Client_ID}&client_secret=${process.env.Client_Secret}&code=${code}`, function(err, res, body){
     body = JSON.parse(body);
@@ -37,7 +36,6 @@ APP.get('/slack/auth', (request, response) => {
 
     }
     else {
-      console.log('NO ENTRY');
       response.redirect('/') //TODO: wrong slack channel message needed.
     }
   })
@@ -135,7 +133,6 @@ APP.get('/vote', (request, response) => {
         WHERE match_id = $1;`,
         [match_id]
       ).then(function(data){
-        console.log(data.rows);
         response.send(data.rows);
       })
     })
@@ -196,8 +193,6 @@ APP.get('/api/player', (request, response) => {
 })
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
-
-APP.listen(PORT, () => console.log(`port ${PORT}`));
 
 function createPlayerTable() {
   CLIENT.query(`
