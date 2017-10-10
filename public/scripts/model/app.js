@@ -5,7 +5,6 @@ var app = app || {};
 (function(module){
   var swapRank = (callback) => {
     $('.dash').off('click').on('click', '.dash_a div', (event) => {
-      console.log(event.target.getAttribute('player-id'));
       $.get('/vote', {userId: app.Player.localUser, winner: event.target.getAttribute('player-id')})
       .then(rows => {
         if(rows.map(ele => ele.result).includes(null)){
@@ -28,11 +27,12 @@ var app = app || {};
              $('#dash_waiting').hide();
              let me = app.Player.all.find((player)=> player.user_id === app.Player.localUser )
              let themId = rows.find(ele => ele.player_id !== app.Player.localUser).player_id;
-             let them = app.Player.all.find((player)=> player.user_id === themId )
+             let them = app.Player.all.find((player)=> player.user_id === themId);
+             let us = [me, themId];
              let higherRank = me.rank < them.rank ? me:them;
              let winner = app.Player.all.find((player)=> player.user_id === rows[0].result);
-             console.log(me);
-             console.log(them);
+             let loser = us.find((player)=> player.user_id !== winner);
+             console.log(loser.user_id);
              if (higherRank !== winner){
                let temp = me.rank;
                me.rank = them.rank;
@@ -43,6 +43,8 @@ var app = app || {};
                  data: {
                    playerOne: me,
                    playerTwo: them,
+                   winner: winner,
+                   loser: loser.user_id,
                  }
                })
                .then(app.leaderboardView.populatePlayers)

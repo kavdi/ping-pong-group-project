@@ -18,7 +18,6 @@ var app = app || {};
 
   Player.loadPlayers = function(callback){
     $.get('/api/players', function(request, response) {
-      console.log(typeof request);
       Player.all = JSON.parse(request).map(function(player) {return new Player(player)})
     // }).then(callback, err => console.error(err, 'error'))
     }).then(callback);
