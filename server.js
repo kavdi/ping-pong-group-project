@@ -10,7 +10,7 @@ const SLACK = require('node-slack');
 const REQUEST = require('request');
 const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
-const hook_url = ' https://hooks.slack.com/services/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';
+const hook_url = 'https://hooks.slack.com/services/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';
 const slack = new SLACK(hook_url);
 
 CLIENT.connect();
