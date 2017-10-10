@@ -11,6 +11,7 @@ var app = app || {};
     app.dashHandler.loadPlayer()
     if (app.Player.all.length === 0)app.Player.loadPlayers(app.playerView.populatePlayers);
     else app.playerView.populatePlayers();
+    $(`.challengeButton [player-id="${app.Player.localUser}"]`).hide();
   };
 
   module.playerController = playerController;
