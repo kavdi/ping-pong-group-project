@@ -10,7 +10,7 @@ const SLACK = require('node-slack');
 const REQUEST = require('request');
 const conString = process.env.DATABASE_URL;
 const CLIENT = new PG.Client(conString);
-const hook_url = 'https://hooks.slack.com/services/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';
+const hook_url = ' https://hooks.slack.com/services/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';
 const slack = new SLACK(hook_url);
 
 CLIENT.connect();
@@ -155,14 +155,27 @@ APP.get('/findChallengers', (request, response) => {
 });
 
 APP.put('/changeRanks', (request, response) => {
-  CLIENT.query(`UPDATE player SET rank=$1 WHERE player_id = $2;`,
+  CLIENT.query(`
+    UPDATE player
+    SET rank = $1, games_played = games_played + 1
+    WHERE player_id = $2;`,
     [request.body.playerOne.rank, request.body.playerOne.user_id])
     .catch(console.error)
     .then(()=> {
-      CLIENT.query(`UPDATE player SET rank=$1 WHERE player_id = $2;`,
+      CLIENT.query(`
+        UPDATE player
+        SET rank = $1, games_played = games_played + 1
+        WHERE player_id = $2;`,
         [request.body.playerTwo.rank, request.body.playerTwo.user_id])
         .then(() => response.send({success: true}))
         .catch(console.error)
+        .then(() => {
+          CLIENT.query(`
+            UPDATE player
+            SET losses = losses + 1
+            WHERE player_id = $1;
+            `,[request.body.loser])
+        })
     })
 
 });
@@ -178,7 +191,14 @@ APP.put('/updateMatch', (request, response) => {
       UPDATE player
       SET challenged = 0, opp_id = null
       WHERE player_id = $1 OR player_id = $2;
-      `)
+      `,[request.body.playerOne, request.body.playerTwo])
+  })
+  .then(() => {
+    CLIENT.query(`
+      UPDATE player
+      SET wins = wins + 1
+      WHERE player_id = $1;
+      `,[request.body.winner])
   })
   .then(() => response.send({success: true}))
   .catch(console.error)
