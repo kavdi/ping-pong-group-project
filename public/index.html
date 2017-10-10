@@ -48,11 +48,14 @@
 <script id="player-template" type="text/x-handlebars-template">
   <tr>
     <td>{{name}}</td>
-    <td>{{class}}</td>
-    <td>{{rank}}</td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{games_played}}</td>
+    <td>
+      <a class="challengeButton" >
+        <div class="buttonStyle" player-id="{{user_id}}">Pong Me</div>
+      <a>
+    </td>
   </tr>
 </script>
 
@@ -90,7 +93,7 @@
     <div class="rellax blockFive" data-rellax-speed="6"></div>
 
     <div class="rellax ballOne" data-rellax-speed="7"></div>
-    <div class="rellax ballTwo" data-rellax-speed="3"></div>
+    <div class="rellax ballTwo" data-rellax-speed="5"></div>
     <div class="rellax ballThree" data-rellax-speed="8"></div>
 
     <p class="rellax subTitle" data-rellax-speed="7">The "official" ping-pong leaderboard. Challenge your friends with <i class="fa fa-slack fa-2" aria-hidden="true"></i> Slack!</p>
@@ -134,7 +137,7 @@
   <div class="playerContainer">
     <table id="player-table">
       <h3>All Players! Pong them for a friendly match (does not affect leaderboard rankings)</h3>
-      <tr>
+      <tr class="header">
         <th>Name</th>
         <th>Wins</th>
         <th>Losses</th>
@@ -184,6 +187,7 @@
           <h3>Kavdi Hodgson</h3>
           <div class="social">
             <a href="https://github.com/kavdi" target="_blank"><i class="aboutSocial fa fa-github-alt fa-2x" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/kavdi/" target="_blank"><i class="aboutSocial fa fa-instagram fa-2x" aria-hidden="true"></i></a>
           </div>
           <p>Pull-up King, ok at soccer, might have a broken rib, Kavdi is the man with the plan and an attitude for gratitude. Likes winning ALL. THE. TIME. At ping-pong, at coding, at life in general. A world traveler with a passion for fashion. We all must give thanks to Kavdi.</p>
         </div>

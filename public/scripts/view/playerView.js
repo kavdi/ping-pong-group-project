@@ -6,7 +6,7 @@ var app = app || {};
   const playerView = {};
 
   playerView.populatePlayers = function(){
-    $('#player-table').empty();
+    $('#player-table tr:not(.header)').remove();
     app.Player.all.forEach(player =>{
       $('#player-table').append(player.toHtml());
     });
