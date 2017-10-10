@@ -194,6 +194,10 @@ APP.get('/api/player', (request, response) => {
 
 APP.get('*', (request, response) => response.sendFile('index.html', {root: './public'}));
 
+APP.listen(PORT, function(){
+  console.log(`Currently on port ${PORT}`);
+});
+
 function createPlayerTable() {
   CLIENT.query(`
     CREATE TABLE IF NOT EXISTS
