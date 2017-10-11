@@ -17,7 +17,7 @@ var app = app || {};
           $('#dash_them_button').attr('player-id', res[0].opp_id);
           if(res[0].challenged === 1){
             $('.buttonStyle').hide();
-            $('#dash_results').show();
+          //  $('#dash_results').show();
           }
         }
       )

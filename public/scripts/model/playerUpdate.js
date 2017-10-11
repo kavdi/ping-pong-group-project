@@ -5,7 +5,7 @@ var app = app || {};
 (function(module){
   var friendlyMatchUpdate = (callback) => {
     $('.dash').off('click').on('click', '.dash_b div', (event) => {
-      $.get('/friendlyWinner', {userId: app.Player.localUser, winner: event.target.getAttribute('player-id')})
+      $.get('/vote', {userId: app.Player.localUser, winner: event.target.getAttribute('player-id')})
       .then(rows => {
         if(rows.map(ele => ele.result).includes(null)){
           $('#dash_friendly').hide();
@@ -34,7 +34,7 @@ var app = app || {};
               method: 'PUT',
               url: '/updateWinsLosses',
               data: {
-                winner: winner,
+                winner: winner.user_id,
                 loser: loser.user_id,
               }
             })
