@@ -34,7 +34,7 @@ var app = app || {};
               method: 'PUT',
               url: '/updateWinsLosses',
               data: {
-                winner: winner.user_id,
+                winner: winner,
                 loser: loser.user_id,
               }
             })
