@@ -112,6 +112,68 @@ APP.get('/challenge', (req, res) => {
     .catch((err) => res.send({success: false, error: err}))
 })
 
+APP.get('/friendlyChallenge', (req, res) => {
+  slack.send({
+    text: `<@${req.query.challenger}> has issued a friendly challenge to <@${req.query.defender}>, test your skills and improve your game.`,
+    username: 'The Ref'
+  })
+    .then(() => res.send({success: true}))
+    .then(
+      CLIENT.query(`
+      UPDATE player
+      SET challenged = 1
+      WHERE player.player_id IN ($1, $2);`,
+        [req.query.challenger, req.query.defender])
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.defender, req.query.challenger]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO match (winner, player1, player2)
+        VALUES
+        (null, $1, $2);`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null) , null);`,
+        [req.query.challenger, req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null), null);`,
+        [req.query.defender, req.query.challenger, req.query.defender]
+      )
+    )
+    .catch((err) => res.send({success: false, error: err}))
+})
+
 APP.get('/vote', (request, response) => {
   CLIENT.query(`SELECT match_id
                 FROM player_match

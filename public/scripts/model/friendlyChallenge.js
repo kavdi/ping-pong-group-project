@@ -9,7 +9,7 @@ var app = app || {};
       console.log(event);
       $.get('/friendlyChallenge', {challenger: app.Player.localUser, defender: event.target.getAttribute('player-id')}).then(callback);
       app.dashHandler.loadPlayer()
-      $('#dash_results').show();
+      $('#dash_friendly').show();
       $('.challengeButton').hide();
     })
   }
