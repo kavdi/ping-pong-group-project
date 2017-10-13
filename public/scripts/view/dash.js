@@ -21,8 +21,9 @@ var app = app || {};
           debugger;
           if(res[0].challenged === 1){
             $('.buttonStyle').hide();
-          //  $('#dash_results').show();
-          $('#dash_friendly').show();
+            //NOTE: need to make an if statement to check if its a leaderboard challenge or not.
+            $('#dash_results').show();
+            $('#dash_friendly').show();
           }
         }
       )
