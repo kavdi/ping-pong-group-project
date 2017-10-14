@@ -15,6 +15,7 @@ var app = app || {};
     if (app.Player.all.length === 0)app.Player.loadPlayers(app.leaderboardView.populatePlayers);
     else app.leaderboardView.populatePlayers();
     app.dashHandler.loadPlayer()
+    app.friendlyMatchUpdate();
     $('#leader-board-table').fadeIn(1000);
     $('#about-page').hide();
     $('.playerContainer').hide();

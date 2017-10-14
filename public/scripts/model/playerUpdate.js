@@ -25,18 +25,11 @@ var app = app || {};
           .then(() => {
             $('#dash_friendly').hide();
             $('#dash_waiting').hide();
-            debugger;
             let me = app.Player.all.find((player)=> player.user_id === app.Player.localUser )
-            console.log(me);
             let themId = rows.find(ele => ele.player_id !== app.Player.localUser).player_id;
-            console.log(themId);
-            debugger;
             let us = [me, themId];
             let winner = app.Player.all.find((player)=> player.user_id === rows[0].result);
-            console.log("winner" + winner.user_id);
             let loser = us.find((player)=> player.user_id !== winner);
-            console.log("loser" + loser.user_id);
-            debugger;
             $.ajax({
               method:'PUT',
               url: '/updateWinsLosses',
