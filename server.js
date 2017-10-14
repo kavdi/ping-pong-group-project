@@ -30,8 +30,8 @@ APP.get('/slack/auth', (request, response) => {
     body = JSON.parse(body);
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
-        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged, opp_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null]
+        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged, opp_id, friendly_game) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT (player_id) DO NOTHING;',
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null, 0]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
@@ -139,20 +139,29 @@ APP.get('/vote', (request, response) => {
   })
 })
 
-APP.get('/findChallengers', (request, response) => {
-
-  CLIENT.query(
-    `SELECT player_id, rank
-    FROM player
-    WHERE rank < (SELECT rank
-                  FROM player
-                  WHERE player_id = $1)
-    ORDER BY rank DESC LIMIT 2`, [request.query.challenger]
-  )
-  .then(function(data){
-    response.send(data.rows);
+APP.put('/updateMatch', (request, response) => {
+  CLIENT.query(`
+    UPDATE match
+    SET winner = $1
+    WHERE id = $2;
+  `,[request.body.winner, request.body.match_id])
+  .then(()=> {
+    CLIENT.query(`
+      UPDATE player
+      SET challenged = 0, opp_id = null
+      WHERE player_id = $1 OR player_id = $2;
+      `,[request.body.playerOne, request.body.playerTwo])
   })
-});
+  .then(() => {
+    CLIENT.query(`
+      UPDATE player
+      SET wins = wins + 1
+      WHERE player_id = $1;
+      `,[request.body.winner])
+  })
+  .then(() => response.send({success: true}))
+  .catch(console.error)
+})
 
 APP.put('/changeRanks', (request, response) => {
   CLIENT.query(`
@@ -180,29 +189,107 @@ APP.put('/changeRanks', (request, response) => {
 
 });
 
-APP.put('/updateMatch', (request, response) => {
-  CLIENT.query(`
-    UPDATE match
-    SET winner = $1
-    WHERE id = $2;
-  `,[request.body.winner, request.body.match_id])
-  .then(()=> {
-    CLIENT.query(`
-      UPDATE player
-      SET challenged = 0, opp_id = null
-      WHERE player_id = $1 OR player_id = $2;
-      `,[request.body.playerOne, request.body.playerTwo])
+APP.get('/friendlyChallenge', (req, res) => {
+  slack.send({
+    text: `<@${req.query.challenger}> has issued a friendly challenge to <@${req.query.defender}>, test your skills and improve your game.`,
+    username: 'The Ref'
   })
-  .then(() => {
-    CLIENT.query(`
+    .then(() => res.send({success: true}))
+    .then(
+      CLIENT.query(`
       UPDATE player
-      SET wins = wins + 1
-      WHERE player_id = $1;
-      `,[request.body.winner])
-  })
-  .then(() => response.send({success: true}))
-  .catch(console.error)
+      SET challenged = 1, friendly_game = 1
+      WHERE player.player_id IN ($1, $2);`,
+        [req.query.challenger, req.query.defender])
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        UPDATE player
+        SET opp_id = $1
+        WHERE player_id = $2;`,
+        [req.query.defender, req.query.challenger]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO match (winner, player1, player2)
+        VALUES
+        (null, $1, $2);`,
+        [req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null) , null);`,
+        [req.query.challenger, req.query.challenger, req.query.defender]
+      )
+    )
+    .then(
+      CLIENT.query(`
+        INSERT INTO player_match (player_id, match_id, result)
+        VALUES ($1, (SELECT id
+                     FROM match
+                     WHERE player1 = $2
+                       AND player2 = $3
+                         AND winner IS null), null);`,
+        [req.query.defender, req.query.challenger, req.query.defender]
+      )
+    )
+    .catch((err) => res.send({success: false, error: err}))
 })
+
+APP.put('/updateWinsLosses', (request, response) => {
+  CLIENT.query(`
+    UPDATE player
+    SET games_played = games_played + 1, friendly_game = 0
+    WHERE player_id = $1;`,
+    [request.body.winner])
+    .catch(console.error)
+    .then(()=> {
+      CLIENT.query(`
+        UPDATE player
+        SET games_played = games_played + 1, friendly_game = 0
+        WHERE player_id = $1;`,
+        [request.body.loser])
+        .then(() => {
+          CLIENT.query(`
+            UPDATE player
+            SET losses = losses + 1
+            WHERE player_id = $1;
+            `,[request.body.loser])
+            .catch(console.error)
+            .then(() => response.send({success: true}))
+        })
+    })
+})
+
+APP.get('/findChallengers', (request, response) => {
+
+  CLIENT.query(
+    `SELECT player_id, rank
+    FROM player
+    WHERE rank < (SELECT rank
+                  FROM player
+                  WHERE player_id = $1)
+    ORDER BY rank DESC LIMIT 2`, [request.query.challenger]
+  )
+  .then(function(data){
+    response.send(data.rows);
+  })
+});
 
 APP.get('/api/player', (request, response) => {
   CLIENT.query(
@@ -231,7 +318,8 @@ function createPlayerTable() {
       losses INT,
       games_played INT,
       challenged INT,
-      opp_id VARCHAR(250)
+      opp_id VARCHAR(250),
+      friendly_game INT
     );`
   )
     .catch(console.error);

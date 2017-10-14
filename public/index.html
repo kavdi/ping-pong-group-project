@@ -131,6 +131,19 @@
        <hr id="dash_hr">
        <p id="dash_wait">Waiting on opponent to input results.</p>
      </div>
+     <div id="dash_friendly">
+       <hr id="dash_hr">
+       <p id='dash_select'>Select the winner of the friendly match.</p>
+       <div id="dash_buttons">
+         <a class="dash_b" id="local_user_dash_button">
+           <div id="dash_you_button_friendly" class="dash_buttonStyle" player-id="">YOU</div>
+         </a>
+         <a class="dash_b" id="other_user_dash_button">
+           <div id="dash_them_button_friendly" class="dash_buttonStyle" player-id="">THEM</div>
+         </a>
+       </div>
+         <p id="dash_sub">Both players need to agree for match to be posted.</p>
+       </div>
     </div>
 
   <!-- PLAYERS TEMPLATE RENDER -->
@@ -255,9 +268,11 @@
   <script src="/vendor/scripts/handlebars.js"></script>
   <script src="/vendor/scripts/page.js"></script>
   <script src="/scripts/model/player.js"></script>
-  <script src="/scripts/model/app.js"></script>
+  <script src="/scripts/model/leaderboard.js"></script>
   <script src="/scripts/model/challenger.js"></script>
   <script src="/scripts/model/challengePong.js"></script>
+  <script src="/scripts/model/friendlyChallenge.js"></script>
+  <script src="/scripts/model/playerUpdate.js"></script>
   <script src="/scripts/view/challengerView.js"></script>
   <script src="/scripts/view/leaderboardView.js"></script>
   <script src="/scripts/view/dash.js"></script>

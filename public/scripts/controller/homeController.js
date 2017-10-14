@@ -9,10 +9,13 @@ var app = app || {};
     $('.navItems a:first').attr('href', `/user/${ctx.params.id}`)
     app.Player.localUser = ctx.params.id;
     app.challengePong();
+    app.friendlyPong();
+    app.friendlyMatchUpdate();
     app.swapRank();
     if (app.Player.all.length === 0)app.Player.loadPlayers(app.leaderboardView.populatePlayers);
     else app.leaderboardView.populatePlayers();
     app.dashHandler.loadPlayer()
+    app.friendlyMatchUpdate();
     $('#leader-board-table').fadeIn(1000);
     $('#about-page').hide();
     $('.playerContainer').hide();

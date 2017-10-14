@@ -8,9 +8,12 @@ var app = app || {};
     $('#about-page').hide();
     $('#player-table').show();
     $('.playerContainer').show();
-    app.dashHandler.loadPlayer()
+    app.friendlyPong();
+    app.dashHandler.loadPlayer();
+    app.friendlyMatchUpdate();
     if (app.Player.all.length === 0)app.Player.loadPlayers(app.playerView.populatePlayers);
     else app.playerView.populatePlayers();
+    $(`.challengeButton [player-id="${app.Player.localUser}"]`).hide();
   };
 
   module.playerController = playerController;
