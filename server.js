@@ -251,7 +251,7 @@ APP.get('/friendlyChallenge', (req, res) => {
     .catch((err) => res.send({success: false, error: err}))
 })
 
-APP.get('/updateWinsLosses', (request, response) => {
+APP.put('/updateWinsLosses', (request, response) => {
   CLIENT.query(`
     UPDATE player
     SET games_played = games_played + 1, friendly_game = 0

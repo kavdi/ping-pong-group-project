@@ -32,7 +32,6 @@ var app = app || {};
              let higherRank = me.rank < them.rank ? me:them;
              let winner = app.Player.all.find((player)=> player.user_id === rows[0].result);
              let loser = us.find((player)=> player.user_id !== winner);
-             console.log(loser.user_id);
              if (higherRank !== winner){
                let temp = me.rank;
                me.rank = them.rank;
