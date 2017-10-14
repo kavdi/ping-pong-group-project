@@ -1,7 +1,6 @@
 'use strict';
 
 var app = app || {};
-//NOTE: remember to call function when testing.
 
 (function(module) {
   var friendlyPong = (callback) => {

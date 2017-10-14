@@ -30,8 +30,8 @@ APP.get('/slack/auth', (request, response) => {
     body = JSON.parse(body);
     if(body.ok === true && body.team.id === 'T7C81H4N9'){
       CLIENT.query(
-        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged, opp_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT (player_id) DO NOTHING;',
-        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null]
+        'INSERT INTO player(name, class, player_id, wins, losses, games_played, rank, challenged, opp_id, friendly_game) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT (player_id) DO NOTHING;',
+        [body.user.name, body.team.id, body.user.id, 0, 0, 0, 11, 0, null, 0]
       ).then(() => response.redirect(`/user/${body.user.id}`));
 
     }
@@ -198,7 +198,7 @@ APP.get('/friendlyChallenge', (req, res) => {
     .then(
       CLIENT.query(`
       UPDATE player
-      SET challenged = 1
+      SET challenged = 1, friendly_game = 1
       WHERE player.player_id IN ($1, $2);`,
         [req.query.challenger, req.query.defender])
     )
@@ -254,14 +254,14 @@ APP.get('/friendlyChallenge', (req, res) => {
 APP.get('/updateWinsLosses', (request, response) => {
   CLIENT.query(`
     UPDATE player
-    SET games_played = games_played + 1
+    SET games_played = games_played + 1, friendly_game = 0
     WHERE player_id = $1;`,
     [request.body.winner])
     .catch(console.error)
     .then(()=> {
       CLIENT.query(`
         UPDATE player
-        SET games_played = games_played + 1
+        SET games_played = games_played + 1, friendly_game = 0
         WHERE player_id = $1;`,
         [request.body.loser])
         .then(() => {
@@ -318,7 +318,8 @@ function createPlayerTable() {
       losses INT,
       games_played INT,
       challenged INT,
-      opp_id VARCHAR(250)
+      opp_id VARCHAR(250),
+      friendly_game INT
     );`
   )
     .catch(console.error);

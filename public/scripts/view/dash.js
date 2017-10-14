@@ -9,7 +9,6 @@ var app = app || {};
     $.get(`/api/player`, {userId: app.Player.localUser})
       .then(
         function(res){
-          debugger;
           $('#dash_name').text(res[0].name);
           $('#dash_wins').text(res[0].wins);
           $('#dash_loss').text(res[0].losses);
@@ -17,12 +16,16 @@ var app = app || {};
           $('#dash_you_button').attr('player-id', res[0].player_id);
           console.log(res[0].player_id);
           $('#dash_them_button').attr('player-id', res[0].opp_id);
+          $('#dash_you_button_friendly').attr('player-id', res[0].player_id);
+          console.log(res[0].player_id);
+          $('#dash_them_button_friendly').attr('player-id', res[0].opp_id);
           console.log(res[0].opp_id);
-          debugger;
-          if(res[0].challenged === 1){
+          if(res[0].challenged === 1 && res[0].friendly_game === 0){
             $('.buttonStyle').hide();
-            //NOTE: need to make an if statement to check if its a leaderboard challenge or not.
             $('#dash_results').show();
+          }
+          else if (res[0].challenged === 1 && res[0].friendly_game === 1) {
+            $('.buttonStyle').hide();
             $('#dash_friendly').show();
           }
         }
